@@ -1,0 +1,1512 @@
+{
+  "date": "2026-11-01",
+  "hardware": "Intel i7-1165G7, 8 logical CPUs, 16 GiB RAM, 4 inference threads, CPU INT8",
+  "limitations": "One short sample per corpus; dataset references not independently human-verified. WER penalizes script and spelling differences. Not a model ranking.",
+  "runs": [
+    {
+      "sample": "english",
+      "referenceSource": "Local Microsoft SAPI synthetic speech",
+      "reference": "Hello. This is a local speech recognition test. The video editor keeps every word and its timestamp.",
+      "result": {
+        "id": "c515e7c5-1e17-4030-a2e6-132d5419a480",
+        "language": "en",
+        "languageProbability": 0.9982078075408936,
+        "model": "small",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\english.wav",
+          "name": "english.wav",
+          "duration": 8.1033125,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\f1a78852f72b0192ec3feb3e1cb725e24f28d8ff13004b898c0c3776478b2a67.wav",
+          "audioSha256": "a501d2e6dfbcd05790b248b9fafa7cf5149030232f385f6488ca3118d0825ac9",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " Hello. This is a local speech recognition test.",
+            "startTime": 0,
+            "endTime": 3.46,
+            "averageLogProbability": -0.27563110567056215,
+            "noSpeechProbability": 0.0024223376531153917,
+            "words": [
+              {
+                "text": " Hello.",
+                "startTime": 0,
+                "endTime": 0.34,
+                "confidence": 0.8011091947555542
+              },
+              {
+                "text": " This",
+                "startTime": 1.22,
+                "endTime": 1.56,
+                "confidence": 0.9816619753837585
+              },
+              {
+                "text": " is",
+                "startTime": 1.56,
+                "endTime": 1.72,
+                "confidence": 0.9975848197937012
+              },
+              {
+                "text": " a",
+                "startTime": 1.72,
+                "endTime": 1.82,
+                "confidence": 0.9959480166435242
+              },
+              {
+                "text": " local",
+                "startTime": 1.82,
+                "endTime": 2.02,
+                "confidence": 0.9491816163063049
+              },
+              {
+                "text": " speech",
+                "startTime": 2.02,
+                "endTime": 2.36,
+                "confidence": 0.9865444302558899
+              },
+              {
+                "text": " recognition",
+                "startTime": 2.36,
+                "endTime": 2.9,
+                "confidence": 0.9284834861755371
+              },
+              {
+                "text": " test.",
+                "startTime": 2.9,
+                "endTime": 3.46,
+                "confidence": 0.9956985712051392
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "text": " The video editor keeps every word and its timestamp.",
+            "startTime": 4.49,
+            "endTime": 7.23,
+            "averageLogProbability": -0.27563110567056215,
+            "noSpeechProbability": 0.0024223376531153917,
+            "words": [
+              {
+                "text": " The",
+                "startTime": 4.49,
+                "endTime": 4.61,
+                "confidence": 0.9817725419998169
+              },
+              {
+                "text": " video",
+                "startTime": 4.61,
+                "endTime": 4.93,
+                "confidence": 0.9554031491279602
+              },
+              {
+                "text": " editor",
+                "startTime": 4.93,
+                "endTime": 5.21,
+                "confidence": 0.9969860911369324
+              },
+              {
+                "text": " keeps",
+                "startTime": 5.21,
+                "endTime": 5.55,
+                "confidence": 0.998316764831543
+              },
+              {
+                "text": " every",
+                "startTime": 5.55,
+                "endTime": 5.89,
+                "confidence": 0.9987044334411621
+              },
+              {
+                "text": " word",
+                "startTime": 5.89,
+                "endTime": 6.19,
+                "confidence": 0.9990350008010864
+              },
+              {
+                "text": " and",
+                "startTime": 6.19,
+                "endTime": 6.37,
+                "confidence": 0.9929943680763245
+              },
+              {
+                "text": " its",
+                "startTime": 6.37,
+                "endTime": 6.53,
+                "confidence": 0.8562468886375427
+              },
+              {
+                "text": " timestamp.",
+                "startTime": 6.53,
+                "endTime": 7.23,
+                "confidence": 0.828857809305191
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 732991488,
+          "cpuPercentMachine": 45.99854540005718,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 6.720283399801701,
+          "audioPreparationSec": 0.02345069986768067,
+          "modelLoadSec": 1.2894872000906616,
+          "inferenceSec": 5.407345499843359,
+          "realTimeFactor": 0.8293254640989968,
+          "audioDurationSec": 8.1033125,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "small",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 0,
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "referenceWords": 17,
+        "hypothesisWords": 17,
+        "rate": 0
+      }
+    },
+    {
+      "sample": "english",
+      "referenceSource": "Local Microsoft SAPI synthetic speech",
+      "reference": "Hello. This is a local speech recognition test. The video editor keeps every word and its timestamp.",
+      "result": {
+        "id": "870a08ea-e32a-4f63-8174-1a94fb785618",
+        "language": "en",
+        "languageProbability": 0.9990090131759644,
+        "model": "large-v3-turbo",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\english.wav",
+          "name": "english.wav",
+          "duration": 8.1033125,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\f1a78852f72b0192ec3feb3e1cb725e24f28d8ff13004b898c0c3776478b2a67.wav",
+          "audioSha256": "a501d2e6dfbcd05790b248b9fafa7cf5149030232f385f6488ca3118d0825ac9",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " Hello. This is a local speech recognition test. The video editor keeps every word and its timestamp.",
+            "startTime": 0,
+            "endTime": 7.29,
+            "averageLogProbability": -0.08761169233669837,
+            "noSpeechProbability": 2.4937764526999917e-12,
+            "words": [
+              {
+                "text": " Hello.",
+                "startTime": 0,
+                "endTime": 0.36,
+                "confidence": 0.7858331203460693
+              },
+              {
+                "text": " This",
+                "startTime": 0.9,
+                "endTime": 1.56,
+                "confidence": 0.9920164346694946
+              },
+              {
+                "text": " is",
+                "startTime": 1.56,
+                "endTime": 1.7,
+                "confidence": 0.9993677735328674
+              },
+              {
+                "text": " a",
+                "startTime": 1.7,
+                "endTime": 1.82,
+                "confidence": 0.999180018901825
+              },
+              {
+                "text": " local",
+                "startTime": 1.82,
+                "endTime": 2.1,
+                "confidence": 0.9809229969978333
+              },
+              {
+                "text": " speech",
+                "startTime": 2.1,
+                "endTime": 2.44,
+                "confidence": 0.986663818359375
+              },
+              {
+                "text": " recognition",
+                "startTime": 2.44,
+                "endTime": 2.98,
+                "confidence": 0.9921780228614807
+              },
+              {
+                "text": " test.",
+                "startTime": 2.98,
+                "endTime": 3.52,
+                "confidence": 0.9997660517692566
+              },
+              {
+                "text": " The",
+                "startTime": 4.07,
+                "endTime": 4.63,
+                "confidence": 0.992423415184021
+              },
+              {
+                "text": " video",
+                "startTime": 4.63,
+                "endTime": 4.91,
+                "confidence": 0.9793537855148315
+              },
+              {
+                "text": " editor",
+                "startTime": 4.91,
+                "endTime": 5.27,
+                "confidence": 0.9992157220840454
+              },
+              {
+                "text": " keeps",
+                "startTime": 5.27,
+                "endTime": 5.59,
+                "confidence": 0.9992376565933228
+              },
+              {
+                "text": " every",
+                "startTime": 5.59,
+                "endTime": 5.91,
+                "confidence": 0.9992914199829102
+              },
+              {
+                "text": " word",
+                "startTime": 5.91,
+                "endTime": 6.19,
+                "confidence": 0.9997596144676208
+              },
+              {
+                "text": " and",
+                "startTime": 6.19,
+                "endTime": 6.37,
+                "confidence": 0.998955488204956
+              },
+              {
+                "text": " its",
+                "startTime": 6.37,
+                "endTime": 6.55,
+                "confidence": 0.9718827605247498
+              },
+              {
+                "text": " timestamp.",
+                "startTime": 6.55,
+                "endTime": 7.29,
+                "confidence": 0.8739529550075531
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 1976070144,
+          "cpuPercentMachine": 46.209931884950336,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 26.859021699987352,
+          "audioPreparationSec": 0.0018474000971764326,
+          "modelLoadSec": 5.140862799948081,
+          "inferenceSec": 21.716311499942094,
+          "realTimeFactor": 3.3145731082180716,
+          "audioDurationSec": 8.1033125,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "large-v3-turbo",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 0,
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "referenceWords": 17,
+        "hypothesisWords": 17,
+        "rate": 0
+      }
+    },
+    {
+      "sample": "hinglish",
+      "referenceSource": "dianavdavidson/MUCS-Hinglish test row 0",
+      "reference": "लिबर ऑफिस impress में एक प्रस्तुति document बनाना और बुनियादी formatting के इस spoken tutorial में आपका स्वागत है",
+      "result": {
+        "id": "edf52e6d-512e-414b-b6e5-0155d8c196e8",
+        "language": "ur",
+        "languageProbability": 0.6261889338493347,
+        "model": "small",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hinglish.wav",
+          "name": "hinglish.wav",
+          "duration": 8.275,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\dc43c1e425a5f2163f3f6c79cd79c7ad027599ce57dc3692f227a6d97068c73c.wav",
+          "audioSha256": "a5c06d1063825a37962386d9bab8016060768f78296f149d93376699b51fb24f",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " لیبر آفس ایم پرس میں ایک پرستوٹی دوکیمٹ بنانا اور بنیادی فورمیٹنگ کے اس اسپوک انٹیٹورل میں آپ کا سواجت ہے",
+            "startTime": 0.94,
+            "endTime": 8.24,
+            "averageLogProbability": -0.5283219389843218,
+            "noSpeechProbability": 0.01108283456414938,
+            "words": [
+              {
+                "text": " لیبر",
+                "startTime": 0.94,
+                "endTime": 1.66,
+                "confidence": 0.3858387619256973
+              },
+              {
+                "text": " آفس",
+                "startTime": 1.66,
+                "endTime": 1.96,
+                "confidence": 0.48423507809638977
+              },
+              {
+                "text": " ایم",
+                "startTime": 1.96,
+                "endTime": 2.14,
+                "confidence": 0.7079534629980723
+              },
+              {
+                "text": " پرس",
+                "startTime": 2.14,
+                "endTime": 2.34,
+                "confidence": 0.7180729111035665
+              },
+              {
+                "text": " میں",
+                "startTime": 2.34,
+                "endTime": 2.54,
+                "confidence": 0.4049893021583557
+              },
+              {
+                "text": " ایک",
+                "startTime": 2.54,
+                "endTime": 3.14,
+                "confidence": 0.860187441110611
+              },
+              {
+                "text": " پرستوٹی",
+                "startTime": 3.14,
+                "endTime": 3.58,
+                "confidence": 0.6715214923024178
+              },
+              {
+                "text": " دوکیمٹ",
+                "startTime": 3.58,
+                "endTime": 3.96,
+                "confidence": 0.45003730555375415
+              },
+              {
+                "text": " بنانا",
+                "startTime": 3.96,
+                "endTime": 4.84,
+                "confidence": 0.8741826415061951
+              },
+              {
+                "text": " اور",
+                "startTime": 4.84,
+                "endTime": 5,
+                "confidence": 0.7281239032745361
+              },
+              {
+                "text": " بنیادی",
+                "startTime": 5,
+                "endTime": 5.52,
+                "confidence": 0.7610351666808128
+              },
+              {
+                "text": " فورمیٹنگ",
+                "startTime": 5.52,
+                "endTime": 6.06,
+                "confidence": 0.7048086417572839
+              },
+              {
+                "text": " کے",
+                "startTime": 6.06,
+                "endTime": 6.14,
+                "confidence": 0.8422703146934509
+              },
+              {
+                "text": " اس",
+                "startTime": 6.14,
+                "endTime": 6.38,
+                "confidence": 0.8216535449028015
+              },
+              {
+                "text": " اسپوک",
+                "startTime": 6.38,
+                "endTime": 6.78,
+                "confidence": 0.7206347212195396
+              },
+              {
+                "text": " انٹیٹورل",
+                "startTime": 6.78,
+                "endTime": 7.24,
+                "confidence": 0.6245220998922983
+              },
+              {
+                "text": " میں",
+                "startTime": 7.24,
+                "endTime": 7.34,
+                "confidence": 0.9927278757095337
+              },
+              {
+                "text": " آپ",
+                "startTime": 7.34,
+                "endTime": 7.54,
+                "confidence": 0.939848780632019
+              },
+              {
+                "text": " کا",
+                "startTime": 7.54,
+                "endTime": 7.68,
+                "confidence": 0.9686964154243469
+              },
+              {
+                "text": " سواجت",
+                "startTime": 7.68,
+                "endTime": 8.12,
+                "confidence": 0.6373624876141548
+              },
+              {
+                "text": " ہے",
+                "startTime": 8.12,
+                "endTime": 8.24,
+                "confidence": 0.9552184343338013
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 733077504,
+          "cpuPercentMachine": 46.991385652738316,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 8.976328899851069,
+          "audioPreparationSec": 0.011382499942556024,
+          "modelLoadSec": 1.460951599990949,
+          "inferenceSec": 7.503994799917564,
+          "realTimeFactor": 1.084752737142123,
+          "audioDurationSec": 8.275,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "small",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 21,
+        "substitutions": 19,
+        "deletions": 0,
+        "insertions": 2,
+        "referenceWords": 19,
+        "hypothesisWords": 21,
+        "rate": 1.105263157894737
+      }
+    },
+    {
+      "sample": "hinglish",
+      "referenceSource": "dianavdavidson/MUCS-Hinglish test row 0",
+      "reference": "लिबर ऑफिस impress में एक प्रस्तुति document बनाना और बुनियादी formatting के इस spoken tutorial में आपका स्वागत है",
+      "result": {
+        "id": "ee140d61-b863-47b3-ae71-0fdb16fed5aa",
+        "language": "ur",
+        "languageProbability": 0.9459815621376038,
+        "model": "large-v3-turbo",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hinglish.wav",
+          "name": "hinglish.wav",
+          "duration": 8.275,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\dc43c1e425a5f2163f3f6c79cd79c7ad027599ce57dc3692f227a6d97068c73c.wav",
+          "audioSha256": "a5c06d1063825a37962386d9bab8016060768f78296f149d93376699b51fb24f",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " لیبر آفس ایمپریس میں ایک پرستوری ڈاکیمنٹ بنانا اور بنیادی فارمیٹنگ کے اس سپوکن ٹیٹوریل میں آپ کا سواگت ہے",
+            "startTime": 0.94,
+            "endTime": 8.24,
+            "averageLogProbability": -0.10848843828955693,
+            "noSpeechProbability": 4.97123509024533e-10,
+            "words": [
+              {
+                "text": " لیبر",
+                "startTime": 0.94,
+                "endTime": 1.64,
+                "confidence": 0.746458371480306
+              },
+              {
+                "text": " آفس",
+                "startTime": 1.64,
+                "endTime": 1.88,
+                "confidence": 0.7510538399219513
+              },
+              {
+                "text": " ایمپریس",
+                "startTime": 1.88,
+                "endTime": 2.38,
+                "confidence": 0.8965383172035217
+              },
+              {
+                "text": " میں",
+                "startTime": 2.38,
+                "endTime": 2.52,
+                "confidence": 0.9978678226470947
+              },
+              {
+                "text": " ایک",
+                "startTime": 2.52,
+                "endTime": 3.14,
+                "confidence": 0.9994794726371765
+              },
+              {
+                "text": " پرستوری",
+                "startTime": 3.14,
+                "endTime": 3.58,
+                "confidence": 0.8318504899740219
+              },
+              {
+                "text": " ڈاکیمنٹ",
+                "startTime": 3.58,
+                "endTime": 3.98,
+                "confidence": 0.9462180361151695
+              },
+              {
+                "text": " بنانا",
+                "startTime": 3.98,
+                "endTime": 4.38,
+                "confidence": 0.9977006316184998
+              },
+              {
+                "text": " اور",
+                "startTime": 4.38,
+                "endTime": 5.02,
+                "confidence": 0.9996166229248047
+              },
+              {
+                "text": " بنیادی",
+                "startTime": 5.02,
+                "endTime": 5.5,
+                "confidence": 0.9988753199577332
+              },
+              {
+                "text": " فارمیٹنگ",
+                "startTime": 5.5,
+                "endTime": 6.04,
+                "confidence": 0.9590263281549726
+              },
+              {
+                "text": " کے",
+                "startTime": 6.04,
+                "endTime": 6.14,
+                "confidence": 0.9994538426399231
+              },
+              {
+                "text": " اس",
+                "startTime": 6.14,
+                "endTime": 6.4,
+                "confidence": 0.9985553622245789
+              },
+              {
+                "text": " سپوکن",
+                "startTime": 6.4,
+                "endTime": 6.86,
+                "confidence": 0.9078825235366821
+              },
+              {
+                "text": " ٹیٹوریل",
+                "startTime": 6.86,
+                "endTime": 7.24,
+                "confidence": 0.8694142784391131
+              },
+              {
+                "text": " میں",
+                "startTime": 7.24,
+                "endTime": 7.34,
+                "confidence": 0.9698384404182434
+              },
+              {
+                "text": " آپ",
+                "startTime": 7.34,
+                "endTime": 7.54,
+                "confidence": 0.9995470643043518
+              },
+              {
+                "text": " کا",
+                "startTime": 7.54,
+                "endTime": 7.68,
+                "confidence": 0.9996324777603149
+              },
+              {
+                "text": " سواگت",
+                "startTime": 7.68,
+                "endTime": 8.08,
+                "confidence": 0.93938347697258
+              },
+              {
+                "text": " ہے",
+                "startTime": 8.08,
+                "endTime": 8.24,
+                "confidence": 0.9993695616722107
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 1975902208,
+          "cpuPercentMachine": 47.79540325228843,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 29.220346300164238,
+          "audioPreparationSec": 0.0017024001572281122,
+          "modelLoadSec": 4.533543899888173,
+          "inferenceSec": 24.685100000118837,
+          "realTimeFactor": 3.5311596737358593,
+          "audioDurationSec": 8.275,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "large-v3-turbo",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 20,
+        "substitutions": 19,
+        "deletions": 0,
+        "insertions": 1,
+        "referenceWords": 19,
+        "hypothesisWords": 20,
+        "rate": 1.0526315789473684
+      }
+    },
+    {
+      "sample": "hinglish-hi",
+      "referenceSource": "dianavdavidson/MUCS-Hinglish test row 0",
+      "reference": "लिबर ऑफिस impress में एक प्रस्तुति document बनाना और बुनियादी formatting के इस spoken tutorial में आपका स्वागत है",
+      "result": {
+        "id": "3d9eaae5-3bac-40f8-ac48-dfb79bc5043c",
+        "language": "hi",
+        "languageProbability": 1,
+        "model": "small",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hinglish.wav",
+          "name": "hinglish.wav",
+          "duration": 8.275,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\dc43c1e425a5f2163f3f6c79cd79c7ad027599ce57dc3692f227a6d97068c73c.wav",
+          "audioSha256": "a5c06d1063825a37962386d9bab8016060768f78296f149d93376699b51fb24f",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " लिबर अफिस इंप्रस में एक प्रस्थोटी डोक्यमें बनाना और भून्यादी फुर्मेटिं के इस श्पोख अंटी तुरल में अपका स्वागात है.",
+            "startTime": 0.94,
+            "endTime": 8.24,
+            "averageLogProbability": -0.40578429377637804,
+            "noSpeechProbability": 0.01108283456414938,
+            "words": [
+              {
+                "text": " लिबर",
+                "startTime": 0.94,
+                "endTime": 1.66,
+                "confidence": 0.7685465266307195
+              },
+              {
+                "text": " अफिस",
+                "startTime": 1.66,
+                "endTime": 1.98,
+                "confidence": 0.7213658690452576
+              },
+              {
+                "text": " इंप्रस",
+                "startTime": 1.98,
+                "endTime": 2.34,
+                "confidence": 0.7126666065305471
+              },
+              {
+                "text": " में",
+                "startTime": 2.34,
+                "endTime": 3,
+                "confidence": 0.8167039155960083
+              },
+              {
+                "text": " एक",
+                "startTime": 3,
+                "endTime": 3.16,
+                "confidence": 0.8925585746765137
+              },
+              {
+                "text": " प्रस्थोटी",
+                "startTime": 3.16,
+                "endTime": 3.58,
+                "confidence": 0.7419594749808311
+              },
+              {
+                "text": " डोक्यमें",
+                "startTime": 3.58,
+                "endTime": 3.94,
+                "confidence": 0.5698798365063138
+              },
+              {
+                "text": " बनाना",
+                "startTime": 3.94,
+                "endTime": 4.74,
+                "confidence": 0.7922384440898895
+              },
+              {
+                "text": " और",
+                "startTime": 4.74,
+                "endTime": 5.06,
+                "confidence": 0.8015779455502828
+              },
+              {
+                "text": " भून्यादी",
+                "startTime": 5.06,
+                "endTime": 5.52,
+                "confidence": 0.7940797887065194
+              },
+              {
+                "text": " फुर्मेटिं",
+                "startTime": 5.52,
+                "endTime": 5.98,
+                "confidence": 0.6813879795372486
+              },
+              {
+                "text": " के",
+                "startTime": 5.98,
+                "endTime": 6.22,
+                "confidence": 0.6690146625041962
+              },
+              {
+                "text": " इस",
+                "startTime": 6.22,
+                "endTime": 6.42,
+                "confidence": 0.9089802304903666
+              },
+              {
+                "text": " श्पोख",
+                "startTime": 6.42,
+                "endTime": 6.78,
+                "confidence": 0.6612052954733372
+              },
+              {
+                "text": " अंटी",
+                "startTime": 6.78,
+                "endTime": 7.02,
+                "confidence": 0.46721088389555615
+              },
+              {
+                "text": " तुरल",
+                "startTime": 7.02,
+                "endTime": 7.24,
+                "confidence": 0.5396441295742989
+              },
+              {
+                "text": " में",
+                "startTime": 7.24,
+                "endTime": 7.44,
+                "confidence": 0.9618945916493734
+              },
+              {
+                "text": " अपका",
+                "startTime": 7.44,
+                "endTime": 7.7,
+                "confidence": 0.7852169473965963
+              },
+              {
+                "text": " स्वागात",
+                "startTime": 7.7,
+                "endTime": 8.14,
+                "confidence": 0.7732661035325792
+              },
+              {
+                "text": " है.",
+                "startTime": 8.14,
+                "endTime": 8.24,
+                "confidence": 0.8722375929355621
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 733110272,
+          "cpuPercentMachine": 47.83858794923048,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 9.6668198001571,
+          "audioPreparationSec": 0.0018619000911712646,
+          "modelLoadSec": 1.3155638000462204,
+          "inferenceSec": 8.349394100019708,
+          "realTimeFactor": 1.1681957462425498,
+          "audioDurationSec": 8.275,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "small",
+          "languageHint": "hi",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 11,
+        "substitutions": 10,
+        "deletions": 0,
+        "insertions": 1,
+        "referenceWords": 19,
+        "hypothesisWords": 20,
+        "rate": 0.5789473684210527
+      }
+    },
+    {
+      "sample": "hinglish-hi",
+      "referenceSource": "dianavdavidson/MUCS-Hinglish test row 0",
+      "reference": "लिबर ऑफिस impress में एक प्रस्तुति document बनाना और बुनियादी formatting के इस spoken tutorial में आपका स्वागत है",
+      "result": {
+        "id": "a2ceae3b-73b4-473e-a890-1660416f8fd2",
+        "language": "hi",
+        "languageProbability": 1,
+        "model": "large-v3-turbo",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hinglish.wav",
+          "name": "hinglish.wav",
+          "duration": 8.275,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\dc43c1e425a5f2163f3f6c79cd79c7ad027599ce57dc3692f227a6d97068c73c.wav",
+          "audioSha256": "a5c06d1063825a37962386d9bab8016060768f78296f149d93376699b51fb24f",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " लिबर आफिस इंप्रेस में एक प्रस्तुती डॉक्यमेंट बनाना और बुन्यादी फॉर्मेटिंग के इस स्पोकेंट टिटोरिल में आपका स्वागत है",
+            "startTime": 0.94,
+            "endTime": 8.24,
+            "averageLogProbability": -0.09634690806269645,
+            "noSpeechProbability": 4.97123509024533e-10,
+            "words": [
+              {
+                "text": " लिबर",
+                "startTime": 0.94,
+                "endTime": 1.66,
+                "confidence": 0.8773690362771353
+              },
+              {
+                "text": " आफिस",
+                "startTime": 1.66,
+                "endTime": 1.98,
+                "confidence": 0.9084009726842245
+              },
+              {
+                "text": " इंप्रेस",
+                "startTime": 1.98,
+                "endTime": 2.38,
+                "confidence": 0.9087718990114
+              },
+              {
+                "text": " में",
+                "startTime": 2.38,
+                "endTime": 2.62,
+                "confidence": 0.994569718837738
+              },
+              {
+                "text": " एक",
+                "startTime": 2.62,
+                "endTime": 3.14,
+                "confidence": 0.9965755939483643
+              },
+              {
+                "text": " प्रस्तुती",
+                "startTime": 3.14,
+                "endTime": 3.58,
+                "confidence": 0.9078842997550964
+              },
+              {
+                "text": " डॉक्यमेंट",
+                "startTime": 3.58,
+                "endTime": 3.96,
+                "confidence": 0.8477455725272497
+              },
+              {
+                "text": " बनाना",
+                "startTime": 3.96,
+                "endTime": 4.4,
+                "confidence": 0.9957928856213888
+              },
+              {
+                "text": " और",
+                "startTime": 4.4,
+                "endTime": 5.06,
+                "confidence": 0.9965612490971884
+              },
+              {
+                "text": " बुन्यादी",
+                "startTime": 5.06,
+                "endTime": 5.5,
+                "confidence": 0.9262701598080721
+              },
+              {
+                "text": " फॉर्मेटिंग",
+                "startTime": 5.5,
+                "endTime": 6.04,
+                "confidence": 0.9596336441380637
+              },
+              {
+                "text": " के",
+                "startTime": 6.04,
+                "endTime": 6.18,
+                "confidence": 0.9271533191204071
+              },
+              {
+                "text": " इस",
+                "startTime": 6.18,
+                "endTime": 6.4,
+                "confidence": 0.9959184328715006
+              },
+              {
+                "text": " स्पोकेंट",
+                "startTime": 6.4,
+                "endTime": 6.92,
+                "confidence": 0.8788456320762634
+              },
+              {
+                "text": " टिटोरिल",
+                "startTime": 6.92,
+                "endTime": 7.24,
+                "confidence": 0.773365318775177
+              },
+              {
+                "text": " में",
+                "startTime": 7.24,
+                "endTime": 7.38,
+                "confidence": 0.9772629737854004
+              },
+              {
+                "text": " आपका",
+                "startTime": 7.38,
+                "endTime": 7.7,
+                "confidence": 0.9959043761094412
+              },
+              {
+                "text": " स्वागत",
+                "startTime": 7.7,
+                "endTime": 8.1,
+                "confidence": 0.9768445566296577
+              },
+              {
+                "text": " है",
+                "startTime": 8.1,
+                "endTime": 8.24,
+                "confidence": 0.9962185919284821
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 1975963648,
+          "cpuPercentMachine": 46.755938408526816,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 18.996482799993828,
+          "audioPreparationSec": 0.003248899942263961,
+          "modelLoadSec": 4.456721200142056,
+          "inferenceSec": 14.536512699909508,
+          "realTimeFactor": 2.2956474682771995,
+          "audioDurationSec": 8.275,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "large-v3-turbo",
+          "languageHint": "hi",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 8,
+        "substitutions": 8,
+        "deletions": 0,
+        "insertions": 0,
+        "referenceWords": 19,
+        "hypothesisWords": 19,
+        "rate": 0.42105263157894735
+      }
+    },
+    {
+      "sample": "hindi",
+      "referenceSource": "google/fleurs Hindi test sample",
+      "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+      "result": {
+        "id": "51c6a812-13f1-4186-a158-4768edfac1f0",
+        "language": "hi",
+        "languageProbability": 0.9299045205116272,
+        "model": "small",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hindi.wav",
+          "name": "hindi.wav",
+          "duration": 9.12,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\867a8dfd0a3e052649529b3cbdb1ad18e275803dd63c2b9c8f3c1e51f01817bb.wav",
+          "audioSha256": "effc3fddae7c20d647d42463efdea8a5646d031804d2888ad0710422341afd2e",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " कुछ अडवो में आजस्तर केंड़ग होता है, जिस का मतलब यहां की उन में थोड़े, या बिना किसी जटके से तुटने की प्रवत्ती होती है.",
+            "startTime": 0.37,
+            "endTime": 8.25,
+            "averageLogProbability": -0.3627739072334571,
+            "noSpeechProbability": 0.008947581984102726,
+            "words": [
+              {
+                "text": " कुछ",
+                "startTime": 0.37,
+                "endTime": 0.95,
+                "confidence": 0.6648737967014313
+              },
+              {
+                "text": " अडवो",
+                "startTime": 0.95,
+                "endTime": 1.41,
+                "confidence": 0.5741418216909681
+              },
+              {
+                "text": " में",
+                "startTime": 1.41,
+                "endTime": 1.71,
+                "confidence": 0.8040130933125814
+              },
+              {
+                "text": " आजस्तर",
+                "startTime": 1.71,
+                "endTime": 2.25,
+                "confidence": 0.6748537309467793
+              },
+              {
+                "text": " केंड़ग",
+                "startTime": 2.25,
+                "endTime": 2.75,
+                "confidence": 0.6079742742909325
+              },
+              {
+                "text": " होता",
+                "startTime": 2.75,
+                "endTime": 3.09,
+                "confidence": 0.8662540912628174
+              },
+              {
+                "text": " है,",
+                "startTime": 3.09,
+                "endTime": 3.19,
+                "confidence": 0.7206458300352097
+              },
+              {
+                "text": " जिस",
+                "startTime": 3.29,
+                "endTime": 3.45,
+                "confidence": 0.8923234343528748
+              },
+              {
+                "text": " का",
+                "startTime": 3.45,
+                "endTime": 3.61,
+                "confidence": 0.6900342702865601
+              },
+              {
+                "text": " मतलब",
+                "startTime": 3.61,
+                "endTime": 4.05,
+                "confidence": 0.7404271006584168
+              },
+              {
+                "text": " यहां",
+                "startTime": 4.05,
+                "endTime": 4.37,
+                "confidence": 0.816408383846283
+              },
+              {
+                "text": " की",
+                "startTime": 4.37,
+                "endTime": 4.55,
+                "confidence": 0.7035448253154755
+              },
+              {
+                "text": " उन",
+                "startTime": 4.55,
+                "endTime": 4.73,
+                "confidence": 0.8656774163246155
+              },
+              {
+                "text": " में",
+                "startTime": 4.73,
+                "endTime": 4.95,
+                "confidence": 0.7745405932267507
+              },
+              {
+                "text": " थोड़े,",
+                "startTime": 4.95,
+                "endTime": 5.37,
+                "confidence": 0.7322519468143582
+              },
+              {
+                "text": " या",
+                "startTime": 5.45,
+                "endTime": 5.59,
+                "confidence": 0.908453106880188
+              },
+              {
+                "text": " बिना",
+                "startTime": 5.59,
+                "endTime": 5.83,
+                "confidence": 0.7817164421081543
+              },
+              {
+                "text": " किसी",
+                "startTime": 5.83,
+                "endTime": 6.11,
+                "confidence": 0.7926843911409378
+              },
+              {
+                "text": " जटके",
+                "startTime": 6.11,
+                "endTime": 6.53,
+                "confidence": 0.7816496541102728
+              },
+              {
+                "text": " से",
+                "startTime": 6.53,
+                "endTime": 6.73,
+                "confidence": 0.9540393352508545
+              },
+              {
+                "text": " तुटने",
+                "startTime": 6.73,
+                "endTime": 7.09,
+                "confidence": 0.7783904448151588
+              },
+              {
+                "text": " की",
+                "startTime": 7.09,
+                "endTime": 7.23,
+                "confidence": 0.5581337064504623
+              },
+              {
+                "text": " प्रवत्ती",
+                "startTime": 7.23,
+                "endTime": 7.73,
+                "confidence": 0.8042304247617722
+              },
+              {
+                "text": " होती",
+                "startTime": 7.73,
+                "endTime": 8.09,
+                "confidence": 0.9364399462938309
+              },
+              {
+                "text": " है.",
+                "startTime": 8.09,
+                "endTime": 8.25,
+                "confidence": 0.9830059707164764
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 736239616,
+          "cpuPercentMachine": 47.7805892045893,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 12.200145999900997,
+          "audioPreparationSec": 0.039945999858900905,
+          "modelLoadSec": 1.429838800104335,
+          "inferenceSec": 10.73036119993776,
+          "realTimeFactor": 1.3377353070066884,
+          "audioDurationSec": 9.12,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "small",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 12,
+        "substitutions": 11,
+        "deletions": 0,
+        "insertions": 1,
+        "referenceWords": 24,
+        "hypothesisWords": 25,
+        "rate": 0.5
+      }
+    },
+    {
+      "sample": "hindi",
+      "referenceSource": "google/fleurs Hindi test sample",
+      "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+      "result": {
+        "id": "ec90c889-7422-4b32-80d2-1d0502d66706",
+        "language": "hi",
+        "languageProbability": 0.5111196637153625,
+        "model": "large-v3-turbo",
+        "source": {
+          "path": "C:\\kushagra\\aiditor\\speech-lab\\test-output\\hindi.wav",
+          "name": "hindi.wav",
+          "duration": 9.12,
+          "audioPath": "C:\\Users\\Kushagra Singh\\AppData\\Local\\com.aiditor.app\\speech-lab\\audio\\867a8dfd0a3e052649529b3cbdb1ad18e275803dd63c2b9c8f3c1e51f01817bb.wav",
+          "audioSha256": "effc3fddae7c20d647d42463efdea8a5646d031804d2888ad0710422341afd2e",
+          "sampleRate": 16000
+        },
+        "segments": [
+          {
+            "id": 1,
+            "text": " कुछ अणवों में आस्तर केंद्रक होता है जिसका मतलब यहां कि उन में थोड़े या बिना किसी जटके से तूटने की प्रवत्ती होती है",
+            "startTime": 0.37,
+            "endTime": 8.25,
+            "averageLogProbability": -0.07796470808167742,
+            "noSpeechProbability": 3.6871410369343494e-09,
+            "words": [
+              {
+                "text": " कुछ",
+                "startTime": 0.37,
+                "endTime": 0.93,
+                "confidence": 0.9865199565887451
+              },
+              {
+                "text": " अणवों",
+                "startTime": 0.93,
+                "endTime": 1.47,
+                "confidence": 0.7714146766811609
+              },
+              {
+                "text": " में",
+                "startTime": 1.47,
+                "endTime": 1.67,
+                "confidence": 0.9986756841341654
+              },
+              {
+                "text": " आस्तर",
+                "startTime": 1.67,
+                "endTime": 2.23,
+                "confidence": 0.7433679600556692
+              },
+              {
+                "text": " केंद्रक",
+                "startTime": 2.23,
+                "endTime": 2.77,
+                "confidence": 0.8764149993658066
+              },
+              {
+                "text": " होता",
+                "startTime": 2.77,
+                "endTime": 3.07,
+                "confidence": 0.9952522814273834
+              },
+              {
+                "text": " है",
+                "startTime": 3.07,
+                "endTime": 3.19,
+                "confidence": 0.9954439699649811
+              },
+              {
+                "text": " जिसका",
+                "startTime": 3.19,
+                "endTime": 3.59,
+                "confidence": 0.9344166020552317
+              },
+              {
+                "text": " मतलब",
+                "startTime": 3.59,
+                "endTime": 4.01,
+                "confidence": 0.996792733669281
+              },
+              {
+                "text": " यहां",
+                "startTime": 4.01,
+                "endTime": 4.37,
+                "confidence": 0.9699936032295227
+              },
+              {
+                "text": " कि",
+                "startTime": 4.37,
+                "endTime": 4.51,
+                "confidence": 0.8516001105308533
+              },
+              {
+                "text": " उन",
+                "startTime": 4.51,
+                "endTime": 4.69,
+                "confidence": 0.9894936283429464
+              },
+              {
+                "text": " में",
+                "startTime": 4.69,
+                "endTime": 4.89,
+                "confidence": 0.8428096771240234
+              },
+              {
+                "text": " थोड़े",
+                "startTime": 4.89,
+                "endTime": 5.31,
+                "confidence": 0.990595743060112
+              },
+              {
+                "text": " या",
+                "startTime": 5.31,
+                "endTime": 5.57,
+                "confidence": 0.9883368412653605
+              },
+              {
+                "text": " बिना",
+                "startTime": 5.57,
+                "endTime": 5.83,
+                "confidence": 0.9678777575492858
+              },
+              {
+                "text": " किसी",
+                "startTime": 5.83,
+                "endTime": 6.11,
+                "confidence": 0.9906861186027527
+              },
+              {
+                "text": " जटके",
+                "startTime": 6.11,
+                "endTime": 6.51,
+                "confidence": 0.9731834133466085
+              },
+              {
+                "text": " से",
+                "startTime": 6.51,
+                "endTime": 6.69,
+                "confidence": 0.9991467595100403
+              },
+              {
+                "text": " तूटने",
+                "startTime": 6.69,
+                "endTime": 7.07,
+                "confidence": 0.9521799460053444
+              },
+              {
+                "text": " की",
+                "startTime": 7.07,
+                "endTime": 7.25,
+                "confidence": 0.9953178763389587
+              },
+              {
+                "text": " प्रवत्ती",
+                "startTime": 7.25,
+                "endTime": 7.73,
+                "confidence": 0.9432335138320923
+              },
+              {
+                "text": " होती",
+                "startTime": 7.73,
+                "endTime": 8.05,
+                "confidence": 0.9980315715074539
+              },
+              {
+                "text": " है",
+                "startTime": 8.05,
+                "endTime": 8.25,
+                "confidence": 0.9994239807128906
+              }
+            ]
+          }
+        ],
+        "processingMetadata": {
+          "peakRamBytes": 1976332288,
+          "cpuPercentMachine": 47.70132518727177,
+          "gpuPercentDevice": null,
+          "peakVramMiBDevice": null,
+          "processingSec": 30.68653029995039,
+          "audioPreparationSec": 0.014460199978202581,
+          "modelLoadSec": 4.680807800032198,
+          "inferenceSec": 25.99126229993999,
+          "realTimeFactor": 3.3647511293805255,
+          "audioDurationSec": 9.12,
+          "device": "cpu",
+          "computeType": "int8",
+          "requestedDevice": "cpu",
+          "fallback": null,
+          "model": "large-v3-turbo",
+          "languageHint": "auto",
+          "vad": true,
+          "vadSilenceMs": 500,
+          "wordTimestamps": true,
+          "coldWorker": true
+        }
+      },
+      "wer": {
+        "cost": 9,
+        "substitutions": 9,
+        "deletions": 0,
+        "insertions": 0,
+        "referenceWords": 24,
+        "hypothesisWords": 24,
+        "rate": 0.375
+      }
+    }
+  ],
+  "runtimeVersions": {
+    "fasterWhisper": "1.2.1",
+    "ctranslate2": "4.8.4",
+    "pyav": "19.0.2",
+    "psutil": "7.2.2",
+    "python": "3.13.7"
+  },
+  "models": [
+    {
+      "id": "small",
+      "repo": "Systran/faster-whisper-small",
+      "revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "totalBytes": 486212372
+    },
+    {
+      "id": "large-v3-turbo",
+      "repo": "mobiuslabsgmbh/faster-whisper-large-v3-turbo",
+      "revision": "0a363e9161cbc7ed1431c9597a8ceaf0c4f78fcf",
+      "totalBytes": 1621665983
+    }
+  ]
+}

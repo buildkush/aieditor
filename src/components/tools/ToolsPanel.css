@@ -1,0 +1,288 @@
+.tools-panel-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-surface, #13151b);
+  color: var(--text-primary, #ffffff);
+  font-family: inherit;
+  font-size: 12px;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ──── Fixed Header & Search ──── */
+.tools-panel-header {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  background-color: var(--bg-surface-elevated, #181b22);
+  flex-shrink: 0;
+}
+
+.tools-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-surface-sunken, #0f1116);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: 5px;
+  padding: 0 8px;
+  height: 28px;
+  box-sizing: border-box;
+}
+
+.tools-search-wrapper:focus-within {
+  border-color: var(--accent, #3b82f6);
+}
+
+.tools-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary, #ffffff);
+  font-size: 11px;
+  font-family: inherit;
+  min-width: 0;
+}
+
+.tools-search-input::placeholder {
+  color: var(--text-tertiary, #6b7280);
+}
+
+.tools-search-clear {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary, #6b7280);
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 11px;
+}
+
+.tools-search-clear:hover {
+  color: var(--text-primary, #ffffff);
+}
+
+/* ──── Feedback Toast / Notification ──── */
+.tools-feedback-banner {
+  padding: 6px 10px;
+  background-color: rgba(59, 130, 246, 0.12);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.15s ease;
+  flex-shrink: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ──── Scrollable Tree View ──── */
+.tools-tree-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 10px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+/* ──── Uniform Category Blocks ──── */
+.tools-category {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Category Header: Clean tree section header, NOT a card */
+.tools-category-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  box-sizing: border-box;
+}
+
+.tools-category-header:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.tools-chevron {
+  font-size: 8px;
+  width: 12px;
+  color: var(--text-tertiary, #888d99);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools-category-title {
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary, #cbd5e1);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Container for Cards */
+.tools-category-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ──── Subcategories: Clean Tree Header & Indented Deeper Than Categories ──── */
+.tools-subcategory-block {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+}
+
+.tools-subcategory-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  box-sizing: border-box;
+}
+
+.tools-subcategory-header:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.tools-subchevron {
+  font-size: 7px;
+  width: 10px;
+  color: var(--text-tertiary, #888d99);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools-subcategory-title {
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--text-primary, #e2e8f0);
+  flex: 1;
+}
+
+.tools-subcategory-count {
+  font-size: 9.5px;
+  color: var(--text-tertiary, #64748b);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.tools-subcategory-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ──── Draggable Item Card Design (Only Actual Items Are Cards) ──── */
+.tools-card {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 9px;
+  background: var(--bg-surface-elevated, #16181f);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 5px;
+  cursor: grab;
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+  user-select: none;
+  min-height: 40px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.tools-card:hover {
+  background: var(--bg-hover, #1e222c);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.tools-card:active {
+  cursor: grabbing;
+  transform: translateY(0);
+}
+
+/* Card Visual Preview Thumbnail / Badge */
+.tools-card-preview {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: var(--bg-surface-sunken, #0c0e12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Card Text Column */
+.tools-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.tools-card-title {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-primary, #f1f5f9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tools-card-sub {
+  font-size: 9.5px;
+  color: var(--text-tertiary, #64748b);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

@@ -1,0 +1,253 @@
+/* ── Editor Shell Layout ── */
+
+.editor-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-app);
+  overflow: hidden;
+}
+
+.editor-panels {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.panel:last-child {
+  border-right: none;
+}
+
+.panel-media {
+  min-width: 180px;
+  max-width: 500px;
+  flex-shrink: 0;
+  border-right: none;
+}
+
+.panel-resizer {
+  width: 5px;
+  background: var(--bg-panel-header);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  cursor: col-resize;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+  user-select: none;
+}
+
+.panel-resizer:hover,
+.panel-resizer.resizing {
+  background: var(--accent);
+}
+
+.panel-preview {
+  flex: 1;
+  min-width: 200px;
+}
+
+.panel-inspector {
+  width: 340px;
+  min-width: 340px;
+  max-width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Collapsed Inspector Tab ── */
+.inspector-collapsed-tab {
+  width: 28px;
+  flex-shrink: 0;
+  background: var(--bg-panel-header, #121316);
+  border-left: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.inspector-collapsed-tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.inspector-collapsed-chevron {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.inspector-collapsed-tab:hover .inspector-collapsed-chevron {
+  color: var(--text-primary);
+  transform: translateX(-2px);
+}
+
+.inspector-collapsed-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.inspector-collapsed-tab:hover .inspector-collapsed-label {
+  color: var(--text-secondary);
+}
+
+/* ── Timeline Resizer Splitter ── */
+.timeline-resizer {
+  height: 6px;
+  background: var(--bg-panel-header);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  cursor: row-resize;
+  position: relative;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.timeline-resizer:hover,
+.timeline-resizer.resizing {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.timeline-resizer-handle {
+  width: 36px;
+  height: 2px;
+  background: var(--text-tertiary);
+  border-radius: 1px;
+  transition: background 0.15s ease;
+}
+
+.timeline-resizer:hover .timeline-resizer-handle,
+.timeline-resizer.resizing .timeline-resizer-handle {
+  background: #ffffff;
+}
+
+.editor-shell.is-resizing-timeline,
+.editor-shell.is-resizing-timeline * {
+  cursor: row-resize !important;
+  user-select: none !important;
+}
+
+.editor-timeline {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+  z-index: 40;
+}
+
+/* ── Panel Header ── */
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--panel-header-height);
+  padding: 0 var(--space-3);
+  background: var(--bg-panel-header);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panel-header-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.panel-body {
+  flex: 1;
+  overflow: auto;
+  background: var(--bg-panel);
+}
+
+/* ── Left Panel (Media / Effects / Transitions Host) ── */
+.left-panel-host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.left-panel-nav {
+  display: flex;
+  align-items: center;
+  height: var(--panel-header-height);
+  background: var(--bg-panel-header);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  padding: 0 4px;
+  gap: 2px;
+}
+
+.left-panel-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.left-panel-tab-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.left-panel-tab-btn.active {
+  background: var(--bg-surface);
+  color: var(--text-accent);
+  border-color: var(--border);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.left-panel-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+

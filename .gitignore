@@ -1,0 +1,124 @@
+# JavaScript dependencies, build output and test caches
+node_modules/
+/dist/
+/dist-ssr/
+*.tsbuildinfo
+coverage/
+.vite/
+.vitest/
+.cache/
+
+# Rust/Tauri build output (keep Cargo.lock and Cargo.toml)
+/src-tauri/target/
+/src-tauri/gen/schemas/
+
+# Python environments, bytecode and test/build caches
+.speech-lab-venv/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+
+# Local model research, downloaded upstream code and generated experiment output
+# scripts/build_tara_int8.py fetches its pinned upstream source when required.
+/speech-lab/research/
+/speech-lab/test-output/
+/tmp/
+/temp/
+/models/
+/checkpoints/
+/datasets/
+*.safetensors
+*.onnx
+*.gguf
+*.ggml
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.tflite
+*.whl
+
+# Personal projects, source recordings and rendered/exported media
+# Keep application images/icons and text-based test fixtures in Git.
+/projects/
+/recordings/
+/media/
+/renders/
+/exports/
+*.aiditor
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+*.m4v
+*.mp3
+*.wav
+*.flac
+*.aac
+*.m4a
+*.ogg
+
+# Local archives, installers and native build products
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.exe
+*.msi
+*.dll
+*.pyd
+*.so
+*.dylib
+
+# Credentials and machine-specific configuration; allow reviewed example files
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+.npmrc
+.pypirc
+.netrc
+.git-credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor and operating-system files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.vs/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~

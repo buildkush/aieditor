@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ── Color System ── */
+  --bg-app: #0d0e12;
+  --bg-surface: #141519;
+  --bg-panel: #1a1b21;
+  --bg-panel-header: #1e1f26;
+  --bg-elevated: #22232b;
+  --bg-hover: #2a2b35;
+  --bg-active: #32333f;
+  --bg-clip: #3a5fcc;
+  --bg-clip-hover: #4a6fdc;
+  --bg-clip-selected: #5580f0;
+  --bg-clip-audio: #2d8a5e;
+  --bg-clip-audio-hover: #3d9a6e;
+  --bg-clip-audio-selected: #4daa7e;
+
+  --text-primary: #e8e9ed;
+  --text-secondary: #9a9ba3;
+  --text-tertiary: #6b6c75;
+  --text-accent: #7c9dff;
+
+  --accent: #5580f0;
+  --accent-hover: #6690ff;
+  --accent-dim: rgba(85, 128, 240, 0.15);
+  --accent-border: rgba(85, 128, 240, 0.4);
+
+  --border: #2a2b35;
+  --border-subtle: #222330;
+  --border-focus: #5580f0;
+
+  --danger: #e5484d;
+  --danger-dim: rgba(229, 72, 77, 0.15);
+  --success: #30a46c;
+  --warning: #f5a623;
+
+  --playhead: #ff4444;
+  --selection-ring: #5580f0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --text-xs: 0.6875rem;   /* 11px */
+  --text-sm: 0.75rem;     /* 12px */
+  --text-base: 0.8125rem; /* 13px */
+  --text-md: 0.875rem;    /* 14px */
+  --text-lg: 1rem;        /* 16px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 2rem;       /* 32px */
+
+  /* ── Spacing ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ── Radius ── */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* ── Transitions ── */
+  --transition-fast: 120ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* ── Layout ── */
+  --titlebar-height: 32px;
+  --menubar-height: 30px;
+  --panel-header-height: 36px;
+  --toolbar-height: 36px;
+  --timeline-track-height: 56px;
+  --timeline-ruler-height: 28px;
+
+  /* ── Controls ── */
+  --control-height-sm: 24px;
+  --control-height-md: 28px;
+  --control-height-lg: 32px;
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-bg-hover: rgba(255, 255, 255, 0.08);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-border-focus: var(--accent);
+  --disabled-opacity: 0.35;
+
+  /* ── Menu / Dropdown ── */
+  --menu-bg: #16171d;
+  --menu-item-hover: var(--bg-hover);
+  --menu-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --menu-radius: var(--radius-md);
+
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-app);
+
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
+
+#root,
+.aiditor-app-root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ── Utility: no-select ── */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Focus Ring ── */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* ── Button Reset ── */
+button {
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}

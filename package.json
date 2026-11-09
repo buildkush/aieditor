@@ -1,0 +1,31 @@
+{
+  "name": "aiditor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "setup": "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/setup.ps1",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^6.2.0",
+    "vitest": "^5.0.5"
+  }
+}

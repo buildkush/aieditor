@@ -1,0 +1,77 @@
+{
+  "packageVersion": "3.2.10",
+  "modelRepo": "udgamlabs/Shruti",
+  "modelRevision": "ebf52e614065ce20e56affdab641f749a04511a5",
+  "modelFile": "shruti.cact",
+  "modelSize": 29546527,
+  "modelSha256": "b189e954aaed4a9fd41acbad3ac05e486381e96325b22a4c695b9ea5153d7065",
+  "engineRepo": "Cactus-Compute/needle3",
+  "engineRevision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "engineVersion": "3.3.3",
+  "platforms": {
+    "macosx_11_0_arm64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-macosx_11_0_arm64.whl",
+      "size": 544605,
+      "sha256": "c5538e045fb26f0b6f911102516582d4434fbfa38aa28e5c2f3eb990b92aaf8d",
+      "library": "libneedle3.dylib",
+      "librarySize": 1087632,
+      "librarySha256": "0137354250a85fa52d100de948ccff9d9f7d8dd73ced0eea19c38f6e351aef55"
+    },
+    "macosx_11_0_x86_64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-macosx_11_0_x86_64.whl",
+      "size": 572094,
+      "sha256": "504b4e14dccff1d9a0591fcd78cc18063b99be396f6935a1c2b8189f0f8de89d",
+      "library": "libneedle3.dylib",
+      "librarySize": 1187488,
+      "librarySha256": "065776f9566d2b0cd8fd60d8999823eaeb7ce14f4ff29199c797ab9feb13717e"
+    },
+    "manylinux2014_aarch64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-manylinux2014_aarch64.whl",
+      "size": 665786,
+      "sha256": "cda9aa23eec3cc2cc6fea43ae5ba32b9d39a1487a198d8e2d86c1314dfe04873",
+      "library": "libneedle3.so",
+      "librarySize": 1486032,
+      "librarySha256": "d65bdedcaee9eac07c4c060285e165e85ffae69bbdfb7e14b586cd16e1864b75"
+    },
+    "manylinux2014_x86_64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-manylinux2014_x86_64.whl",
+      "size": 689201,
+      "sha256": "b909897e11cf4da9566df6370f8a63564693fbd6edeaac0b8678b71865d4dc24",
+      "library": "libneedle3.so",
+      "librarySize": 1590584,
+      "librarySha256": "87476ff70e80334d7c766dbf236b72f42876072df22014c6ec8a9b087b82b260"
+    },
+    "musllinux_1_2_aarch64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-musllinux_1_2_aarch64.whl",
+      "size": 665522,
+      "sha256": "a67c61a1712472ccb85ea94e7ce9817dff84c9cb6d5e0ebbac30b464b9a791db",
+      "library": "libneedle3.so",
+      "librarySize": 1488264,
+      "librarySha256": "dfa5690ba6c4c1a895dffca2123ae32038b88f2c1d2ebb845d824376520f5d26"
+    },
+    "musllinux_1_2_x86_64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-musllinux_1_2_x86_64.whl",
+      "size": 690240,
+      "sha256": "f00d79500fac006f3c7a66f6a68cf60676e7026e26d5fa8108fce5691f43620d",
+      "library": "libneedle3.so",
+      "librarySize": 1594696,
+      "librarySha256": "3ae5f1eabdca08437adc35ac13f265727ddabcf71ce385fd397357dfe126c3c3"
+    },
+    "win_amd64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-win_amd64.whl",
+      "size": 700859,
+      "sha256": "b6447b2be7426b7ff3b06360b15a90a8b7870e3fa2275023e20541d5e8d81bdb",
+      "library": "libneedle3.dll",
+      "librarySize": 1533952,
+      "librarySha256": "1263c6003dd88b9fcb1904a55985be66858639849309280b42f7764ee5d874d0"
+    },
+    "win_arm64": {
+      "path": "python/cactus_needle-3.3.3-py3-none-win_arm64.whl",
+      "size": 633345,
+      "sha256": "92e4f0edc33f83cf2a67b878d74ec39ec2a2941f0fbbc7f5832c68301e81fb22",
+      "library": "libneedle3.dll",
+      "librarySize": 1325568,
+      "librarySha256": "ecfd9968644c8d39745f80bbe25a2dfb9b080c31f15b785abae557b541daf27c"
+    }
+  }
+}

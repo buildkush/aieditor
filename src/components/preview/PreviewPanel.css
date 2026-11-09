@@ -1,0 +1,401 @@
+/* ── Preview Panel ── */
+
+.preview-panel-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.preview-panel-container:fullscreen,
+.preview-panel-container.is-fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  background: #000000 !important;
+}
+
+.preview-panel-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  min-height: 38px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.preview-header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.preview-zoom-selector {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 2px 4px;
+}
+
+.preview-zoom-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.preview-zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.preview-zoom-btn.active {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-dim);
+}
+
+.preview-zoom-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  padding: 0 4px;
+  min-width: 36px;
+  text-align: center;
+  user-select: none;
+}
+
+.preview-resolution {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* ── Main Preview Stage ── */
+
+.preview-stage {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #181920;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  /* Own touchscreen gestures throughout the stage and its descendants. */
+  touch-action: none;
+}
+
+.preview-panel-container:fullscreen .preview-stage,
+.preview-panel-container.is-fullscreen .preview-stage {
+  background: #000000 !important;
+  background-image: none !important;
+  padding: 0 !important;
+}
+
+/* ── Fixed Aspect-Ratio Project Canvas Frame ── */
+
+.preview-canvas {
+  background-color: #000000;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 12px 36px rgba(0, 0, 0, 0.75),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ── Inner Clipped Viewport for Video Content Layers ── */
+
+.preview-canvas-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Composited Media Layers ── */
+
+.preview-layer {
+  position: absolute;
+  box-sizing: border-box;
+  background: transparent;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.preview-video-element,
+.preview-image-element {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* ── Empty State ── */
+
+.preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+.preview-empty-icon {
+  font-size: 24px;
+  opacity: 0.3;
+}
+
+.preview-empty-dims {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+}
+
+/* ── Offline Media Overlay ── */
+
+.preview-offline-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0c0808;
+  border: 2px dashed rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.preview-offline-icon {
+  font-size: 32px;
+  margin-bottom: var(--space-2);
+}
+
+.preview-offline-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #ef4444;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.preview-offline-filename {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.preview-offline-path {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Docked Full-Width Bottom Transport Bar (Never covers video) ── */
+
+.preview-footer-transport {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 var(--space-4);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  z-index: 10;
+  position: relative;
+}
+
+/* ── Interactive Progress / Scrubber Bar at top of Transport ── */
+
+.preview-progress-track {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  z-index: 20;
+  transition: height var(--transition-fast), top var(--transition-fast);
+}
+
+/* Expanded invisible hit area for easy grabbing */
+.preview-progress-track::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+}
+
+.preview-progress-track:hover,
+.preview-progress-track:active {
+  top: -4px;
+  height: 6px;
+}
+
+.preview-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--accent);
+  pointer-events: none;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+.preview-progress-thumb {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8), 0 0 8px var(--accent);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  transition: transform var(--transition-fast);
+}
+
+.preview-progress-track:hover .preview-progress-thumb,
+.preview-progress-track:active .preview-progress-thumb {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.preview-progress-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  background: rgba(15, 17, 23, 0.95);
+  border: 1px solid var(--border-strong, rgba(255, 255, 255, 0.15));
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.04em;
+}
+
+.preview-transport-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+}
+
+.preview-transport-center,
+.preview-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.preview-transport-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.preview-timecode,
+.preview-duration {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+.preview-timecode {
+  color: var(--text-primary);
+}
+
+.preview-duration {
+  color: var(--text-secondary);
+}
+
+.transport-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.transport-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.transport-btn.primary {
+  color: var(--accent);
+}
+
+.transport-btn.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}

@@ -1,0 +1,194 @@
+/* ── Aiditor Main Menu Bar ── */
+
+.aiditor-menubar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 4px;
+  background: transparent;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  z-index: 900;
+  gap: 2px;
+  box-sizing: border-box;
+}
+
+.menubar-item-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menubar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  height: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary, #9a9ba3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm, 4px);
+  cursor: pointer;
+  transition: all var(--transition-fast, 120ms ease);
+}
+
+.menubar-btn:hover {
+  background: var(--bg-hover, #2a2b35);
+  color: var(--text-primary, #e8e9ed);
+}
+
+.menubar-btn.active {
+  background: var(--bg-hover, #2a2b35);
+  color: var(--text-primary, #e8e9ed);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.menubar-dirty-dot {
+  font-size: 9px;
+  color: #facc15;
+  filter: drop-shadow(0 0 3px rgba(250, 204, 21, 0.7));
+}
+
+/* ── Menu Dropdowns ── */
+
+.menubar-dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 220px;
+  background: var(--menu-bg, #16171d);
+  border: 1px solid var(--border, #2a2b35);
+  border-radius: var(--radius-md, 6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: menuAppear 0.1s ease-out;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menubar-dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm, 4px);
+  font-size: 12px;
+  color: var(--text-primary, #e8e9ed);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 100ms ease, color 100ms ease;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.menubar-dropdown-item:hover:not(:disabled):not(.disabled) {
+  background: var(--bg-hover, #2a2b35);
+  color: #ffffff;
+}
+
+.menubar-dropdown-item:disabled,
+.menubar-dropdown-item.disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.menubar-dropdown-item.danger:hover:not(:disabled) {
+  background: rgba(229, 72, 77, 0.2);
+  color: var(--danger, #e5484d);
+}
+
+.dropdown-item-label {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.dropdown-item-label.recent-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+}
+
+.dropdown-item-label.muted {
+  font-style: italic;
+  color: var(--text-tertiary, #6b6c75);
+}
+
+.dropdown-item-shortcut {
+  font-size: 10px;
+  color: var(--text-tertiary, #6b6c75);
+  font-family: var(--font-mono, monospace);
+  margin-left: auto;
+  letter-spacing: 0.03em;
+}
+
+.dropdown-item-check {
+  width: 14px;
+  font-size: 11px;
+  color: var(--accent, #5580f0);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menubar-divider {
+  height: 1px;
+  background: var(--border, #2a2b35);
+  margin: 3px 0;
+  opacity: 0.8;
+}
+
+/* ── Submenus ── */
+
+.menubar-submenu-parent {
+  position: relative;
+  width: 100%;
+}
+
+.menubar-dropdown-item.has-submenu {
+  justify-content: space-between;
+}
+
+.dropdown-submenu-arrow {
+  font-size: 13px;
+  color: var(--text-tertiary, #6b6c75);
+  margin-left: auto;
+}
+
+.menubar-submenu {
+  position: absolute;
+  top: -4px;
+  left: calc(100% - 2px);
+  min-width: 220px;
+  max-width: 280px;
+  background: var(--menu-bg, #16171d);
+  border: 1px solid var(--border, #2a2b35);
+  border-radius: var(--radius-md, 6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  z-index: 3001;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: menuAppear 0.1s ease-out;
+}

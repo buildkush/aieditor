@@ -1,0 +1,68 @@
+{
+  "repo": "Trelis/tara",
+  "revision": "4dd4782d65ed8c9690b52478e4419d577fff40be",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "name": "README.md",
+      "size": 8733,
+      "sha256": "51ca85bb304e7a9e590579a408aab02def32b743e255274c899b33d52a4a8a26"
+    },
+    {
+      "name": "added_tokens.json",
+      "size": 34674,
+      "sha256": "0c4c90cd86a246f0646c82f63e5a53761d29673ead2486b3f4e4bd81e632c526"
+    },
+    {
+      "name": "config.json",
+      "size": 1243,
+      "sha256": "c4af6913be5b4ce974ed82f4ebe45d95b262521010389bfc67bb9bf09a6b2255"
+    },
+    {
+      "name": "generation_config.json",
+      "size": 3801,
+      "sha256": "71c4692f1148a9fa0e923ee91100223930a6b4bb54a2ee221c10228de0e9dab0"
+    },
+    {
+      "name": "merges.txt",
+      "size": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "name": "model.safetensors",
+      "size": 3087229512,
+      "sha256": "48722cacd4a64028d785484b4d336ded216c401b52dc1f45a1686050835eac9b"
+    },
+    {
+      "name": "normalizer.json",
+      "size": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "name": "preprocessor_config.json",
+      "size": 340,
+      "sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711"
+    },
+    {
+      "name": "special_tokens_map.json",
+      "size": 2207,
+      "sha256": "9e80f311d626e349ac1021772413ed9c1145f631cbce61b625eca74bb519a2c0"
+    },
+    {
+      "name": "tokenizer.json",
+      "size": 3930834,
+      "sha256": "a7f550dd078671273f0bebe8bdc9b3e57467792d6f721a78a8bc7fe7c4cf12c3"
+    },
+    {
+      "name": "tokenizer_config.json",
+      "size": 283073,
+      "sha256": "131cbad92c84998cbacceedf58901e872931bca5af7466df5e0904af28b5a383"
+    },
+    {
+      "name": "vocab.json",
+      "size": 1036558,
+      "sha256": "e2aa043ef015641d363d8288e7c241c85e36a5c761fb303598e0710233344387"
+    }
+  ],
+  "totalBytes": 3093077510
+}

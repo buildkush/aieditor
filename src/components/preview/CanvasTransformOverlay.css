@@ -1,0 +1,97 @@
+.transform-overlay-box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.transform-overlay-outline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.transform-overlay-interior {
+  fill: rgba(85, 128, 240, 0.025);
+  stroke: var(--accent, #5580f0);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: all;
+  cursor: move;
+}
+
+.transform-overlay-interior:hover {
+  fill: rgba(85, 128, 240, 0.06);
+}
+
+.transform-handle,
+.transform-rotation-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 2px solid var(--accent, #5580f0);
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px #0009;
+  pointer-events: auto;
+  touch-action: none;
+  z-index: 2;
+}
+
+.transform-handle::before,
+.transform-rotation-handle::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+}
+
+.transform-handle:hover,
+.transform-rotation-handle:hover,
+.transform-rotation-handle.rotating {
+  background: var(--accent, #5580f0);
+}
+
+.transform-handle-tl, .transform-handle-br { cursor: nwse-resize; }
+.transform-handle-tr, .transform-handle-bl { cursor: nesw-resize; }
+.transform-handle-t, .transform-handle-b { cursor: ns-resize; }
+.transform-handle-l, .transform-handle-r { cursor: ew-resize; }
+
+.transform-rotation-stem {
+  stroke: var(--accent, #5580f0);
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+
+.transform-rotation-handle {
+  width: 20px;
+  height: 20px;
+  color: #182135;
+  font-size: 15px;
+  line-height: 16px;
+  cursor: grab;
+}
+
+.transform-rotation-handle.rotating { cursor: grabbing; }
+
+.transform-crop-guide {
+  fill: none;
+  stroke: #ffffffb3;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  pointer-events: none;
+}
+
+.transform-snap-guide {
+  stroke: #f0abfc;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}

@@ -1,0 +1,114 @@
+/* ── Aiditor Custom Title Bar ── */
+
+.aiditor-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--titlebar-height, 32px);
+  min-height: var(--titlebar-height, 32px);
+  background: var(--bg-app, #0d0e12);
+  border-bottom: 1px solid var(--border-subtle, #1a1b22);
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 10px;
+  height: 100%;
+  cursor: default;
+}
+
+.titlebar-app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent, #5580f0);
+}
+
+.titlebar-app-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary, #e8e9ed);
+  text-transform: lowercase;
+  margin-right: 4px;
+}
+
+.titlebar-integrated-menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.titlebar-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: default;
+}
+
+.titlebar-project-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.titlebar-project-name {
+  font-size: 11px;
+  color: var(--text-secondary, #9a9ba3);
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titlebar-dirty-dot {
+  font-size: 9px;
+  color: #facc15;
+  filter: drop-shadow(0 0 3px rgba(250, 204, 21, 0.7));
+}
+
+.titlebar-window-controls {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+}
+
+.titlebar-window-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9a9ba3);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+  outline: none;
+}
+
+.titlebar-window-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #e8e9ed);
+}
+
+.titlebar-window-btn.btn-close:hover {
+  background: #e5484d !important;
+  color: #ffffff !important;
+}
+
+.titlebar-window-btn:active {
+  background: rgba(255, 255, 255, 0.14);
+}
