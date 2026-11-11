@@ -16,7 +16,7 @@ import './AutoCaptionsDialog.css'
 
 function friendlyError(err: unknown) {
   const message = String((err as Error).message ?? err)
-  if (/runtime|python|venv|desktop app/i.test(message)) return 'Captions are unavailable. Complete the local caption setup and try again.'
+  if (/runtime|desktop app/i.test(message)) return 'Captions are unavailable. Complete the local caption setup and try again.'
   return message
 }
 interface Props { state: ProjectState; onImport: (transcript: CaptionTranscript) => void; onClose: () => void; dispatch?: (command: EditorCommand) => void; player?: ReturnType<typeof usePlayer> }
@@ -127,7 +127,7 @@ export function AutoCaptionsDialog({ state, onImport, onClose, dispatch, player 
         {(transcript?.review ? transcript.review.segments.some(segment => segment.words.some(word => word.timingNeedsReview)) : transcript?.nativeWords.some(word => word.timingNeedsReview)) && <p role="status">Some original word timings need review. You can adjust them before importing.</p>}
         {planError && !transcript && <p role="alert">{planError}</p>}
         {(error || model?.error) && <p role="alert" className="auto-captions-error">{error || 'Captions need local setup before they can be generated.'}</p>}
-        {(!model?.installed || model.runtimeInstalled === false) && !busy && model && <button onClick={() => void perform(async signal => { const rows = await autoCaptionsService.install(setProgress, signal, quickMode); if (!signal.aborted) setModel(rows.find(row => row.id === (quickMode ? 'shruti' : 'tara-int8-speech-aware-parallel')) ?? null) })}>Set up captions</button>}
+        {(!model?.installed || model.runtimeInstalled === false) && !busy && model && <button onClick={() => void perform(async signal => { const rows = await autoCaptionsService.install(setProgress, signal, quickMode); if (!signal.aborted) setModel(rows.find(row => row.id === (quickMode ? 'shruti' : 'tara')) ?? null) })}>Set up captions</button>}
         {busy && <div role="status" className="auto-captions-progress"><progress max={1} value={progressValue} /><span>{progress?.stage === 'audio' ? 'Preparing audio…' : progress?.stage === 'downloading' ? 'Setting up captions…' : transcript || progress ? 'Generating captions…' : 'Getting ready…'}</span><button onClick={() => controller.current?.abort()}>Stop</button></div>}
         {candidate && <div className="caption-retry-choice" role="status"><span>New captions are ready. Keep your edits or use the new version.</span><button onClick={() => setCandidate(null)}>Keep edits</button><button onClick={() => { commit(candidate); setCandidate(null) }}>Use new captions</button></div>}
         {transcript && <div className="caption-review-layout">

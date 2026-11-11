@@ -3,8 +3,8 @@ import type { TranscriptResult } from '../../speech-lab/types'
 
 export function OriginalOutput({ result }: { result: TranscriptResult }) {
   const detected = result.language ?? 'Language unavailable'
-  const language = ((result.model === 'tara' || (result.model === 'tara-int8-speech-aware' || result.model === 'tara-int8-speech-aware-parallel')) || result.model === 'tara-int8') ? 'Hindi–English mixed-code mode' : (result.model === 'shruti' || result.model === 'shruti-needle-3210' || result.model === 'shruti-fp32') ? detected : `${detected}${result.processingMetadata.languageHint === 'auto' ? ` detected (${result.languageProbability == null ? 'unavailable' : `${(result.languageProbability * 100).toFixed(1)}%`})` : ' language hint'}`
-  return <details open><summary>{(result.model === 'shruti' || result.model === 'shruti-needle-3210' || result.model === 'shruti-fp32') ? 'Native Shruti output' : ((result.model === 'tara' || (result.model === 'tara-int8-speech-aware' || result.model === 'tara-int8-speech-aware-parallel')) || result.model === 'tara-int8') ? 'Native Tara output' : result.model === 'whistle' ? 'Native Whistle output' : (result.model === 'srota' || result.model === 'srota-cpu') ? 'Native Srota output' : (result.model === 'shunya' || result.model === 'shunya-int8') ? 'Native Shunya output' : 'Original Whisper output'} · {language}</summary><pre>{transcriptText(result) || 'No speech recognized.'}</pre></details>
+  const language = detected
+  return <details open><summary>Native {result.model === 'shruti' ? 'Shruti' : 'Tara'} output · {language}</summary><pre>{transcriptText(result) || 'No speech recognized.'}</pre></details>
 }
 
 export function WordOutput({ result, onSeek }: { result: TranscriptResult; onSeek: (time: number) => void }) {

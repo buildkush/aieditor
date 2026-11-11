@@ -10,6 +10,29 @@ coverage/
 
 # Rust/Tauri build output (keep Cargo.lock and Cargo.toml)
 /src-tauri/target/
+/native/speech/target/
+/native/**/target/
+/native/ct2/build*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+*.obj
+*.o
+*.a
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.idb
+*.iobj
+*.ipdb
+*.pch
+
+# Local handoff packages; source manifests remain versioned.
+/transfer/
+/native-speech-transfer/
 /src-tauri/gen/schemas/
 
 # Python environments, bytecode and test/build caches
@@ -28,7 +51,6 @@ htmlcov/
 *.egg-info/
 
 # Local model research, downloaded upstream code and generated experiment output
-# scripts/build_tara_int8.py fetches its pinned upstream source when required.
 /speech-lab/research/
 /speech-lab/test-output/
 /tmp/

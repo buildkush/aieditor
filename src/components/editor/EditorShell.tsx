@@ -16,7 +16,7 @@ import { ProjectSettingsDialog } from '../dialogs/ProjectSettingsDialog'
 import { KeyboardShortcutsDialog } from '../dialogs/KeyboardShortcutsDialog'
 import { AboutDialog } from '../dialogs/AboutDialog'
 import { AutoCaptionsDialog } from '../captions/AutoCaptionsDialog'
-import { ImportAutoCaptionsCommand } from '../../core/commands/importAutoCaptionsCommand'
+import { ApplyCaptionTrackCommand } from '../../core/commands/importAutoCaptionsCommand'
 import { exportCaptions } from '../../services/exportCaptions'
 import {
   SplitTimelineItemCommand,
@@ -845,7 +845,7 @@ export function EditorShell({ onCloseProject, onOpenProject, onNewProject }: Edi
       />
 
       {isAutoCaptionsOpen && <AutoCaptionsDialog state={state} dispatch={dispatch} player={player} onClose={closeAutoCaptions} onImport={transcript => {
-        dispatch(new ImportAutoCaptionsCommand(transcript))
+        dispatch(new ApplyCaptionTrackCommand(transcript))
         closeAutoCaptions()
       }} />}
 

@@ -4,6 +4,10 @@ An AI-native, local-first desktop video editor designed to be controlled by both
 
 ## Run the development app
 
+**Updating a PC with older models?** Follow [Update an existing installation](docs/update-existing-installation.md).
+Use `setup.cmd -SpeechBundle "D:\aiditor-native-speech"` for the current CT2 CPU
+configuration; pulling Git alone does not install that unpublished runtime/model.
+
 On Windows x64, clone the repository and run:
 
 ```powershell
@@ -11,11 +15,23 @@ On Windows x64, clone the repository and run:
 .\run-desktop.bat
 ```
 
-Setup installs missing prerequisites through WinGet, app/Python dependencies,
-and both current caption modes (Tara and Shruti). The first run needs internet,
+Setup installs missing prerequisites through WinGet, app/native dependencies,
+and both current caption modes (native Tara and Shruti), with no Python or pip.
+The first run needs internet,
 several GB of disk space, and may show Windows administrator prompts. It reuses
 verified cached models and runs no transcription. Use `.\setup.cmd -AppOnly`
 to skip speech setup, or `.\setup.cmd -Check` for a read-only readiness check.
+
+See [Native caption engine](docs/native-captions.md) for model conversion, agent
+CLI/MCP access, GPU-pack status and migration limitations.
+
+The new [native runtime foundation](docs/native-runtime.md) adds an optional
+Python-free CTranslate2 CPU backend, portable capability probes, and bounded chunk
+scheduling. Published standalone acceleration/model packs are still being prepared;
+the source-development setup above remains separate from the end-user installer.
+
+For a second PC, follow [CPU first, then GPU benchmarking](docs/test-second-machine.md).
+Git does not transfer the locally cached CT2 runtime or model weights.
 
 For a frontend-only browser session after dependencies are installed, use
 `npm.cmd run dev`. Current local speech workers require the desktop app.

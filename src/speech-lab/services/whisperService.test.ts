@@ -28,9 +28,9 @@ describe('Speech Lab process bridge', () => {
     expect(await promise).toEqual({ text: 'protocol fixture' })
     expect(bridge.unlisten).toHaveBeenCalledOnce()
   })
-  it('serializes operations so model deletion and inference cannot race', async () => {
+  it('serializes native operations so catalog checks and inference cannot race', async () => {
     const first = runWorker({ action: 'transcribe' })
-    const second = runWorker({ action: 'remove', model: 'small' })
+    const second = runWorker({ action: 'catalog' })
     await vi.waitFor(() => expect(startCalls()).toHaveLength(1))
     terminal('result', 'first')
     await first
@@ -38,7 +38,7 @@ describe('Speech Lab process bridge', () => {
     terminal('result', 'second')
     expect(await second).toBe('second')
   })
-  it.each(['small', 'whistle'])('kills only the matching %s job when aborted and keeps the queue reusable', async model => {
+  it.each(['tara', 'shruti'])('kills only the matching %s job when aborted and keeps the queue reusable', async model => {
     const abort = new AbortController()
     const promise = runWorker({ action: 'download', model }, undefined, abort.signal)
     const expected = expect(promise).rejects.toMatchObject({ name: 'AbortError' })
@@ -78,11 +78,11 @@ describe('Speech Lab process bridge', () => {
     expect(bridge.invoke.mock.calls[2][1].done).toBe(true)
     expect(progress.mock.lastCall?.[0].completed).toBe(600000)
   })
-  it('uses the same job bridge for Shruti keywords, progress, native responses and errors', async () => {
+  it('uses the same job bridge for native Shruti options, progress, native responses and errors', async () => {
     const progress = vi.fn()
-    const request = speechService.transcribe('prepared-source.mp4', { model: 'shruti', language: 'auto', device: 'auto', vad: false, vadSilenceMs: 500, keywords: ['My Name', 'new product'] }, progress, new AbortController().signal)
+    const request = speechService.transcribe('prepared-source.mp4', { model: 'shruti', language: 'auto', device: 'auto', vad: false, vadSilenceMs: 500 }, progress, new AbortController().signal)
     await vi.waitFor(() => expect(startCalls()).toHaveLength(1))
-    expect(startCalls()[0][1].request).toMatchObject({ action: 'transcribe', model: 'shruti', language: 'auto', keywords: ['My Name', 'new product'] })
+    expect(startCalls()[0][1].request).toMatchObject({ action: 'transcribe', model: 'shruti', language: 'auto' })
     terminal('progress', { stage: 'transcribing', message: 'Shruti' })
     expect(progress).toHaveBeenCalledWith({ stage: 'transcribing', message: 'Shruti' })
     const fixture = { text: ' मेरा order है ', model: 'shruti', rawResponse: { text: ' मेरा order है ' }, words: [] }

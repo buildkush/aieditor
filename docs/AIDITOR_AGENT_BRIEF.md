@@ -19,17 +19,7 @@ The complete autonomous MCP editor, advanced tracking/masking and finished-video
 
 ## Current production auto captions
 
-File → Generate Auto Captions uses **Tara by default**. **Quick mode** explicitly uses **Shruti** with a less-accurate warning; user-facing disclaimer must not name models. No silent fallback. Production keyword controls were removed.
-
-Tara = Trelis/tara converted CTranslate2 4.8.4 CPU int8_float32, speech-aware variable chunks, two workers × two threads, one-chunk fallback to one × four. Profile ID: tara-int8-speech-aware-parallel. Reuse existing conversion/cache/custom optimized native runtime; do not reconvert or upgrade dependencies casually. Model releases at job end. Approximately 1.56 GB converted weights and ~3.4 GB observed runtime RAM; speed depends on recording/machine.
-
-Shruti = cactus-needle 3.2.10 / native engine 3.3.3. Both engines use the same prepared timeline mix. Preserve gaps, offsets, trim, speed/reverse and mute/gain. Review/import uses the existing ImportAutoCaptionsCommand and ProjectState caption architecture.
-
-Native mixed-script output is preserved. Hinglish output uses the existing deterministic Roman Hindi converter, not another AI model. Script switches must not rerun ASR or change word times.
-
-Timing = native attention/DTW plus speech constraints, bounded alignment-only recovery and diagnostics. Crucial final policy: if a questionable native interval cannot be repaired, KEEP its original usable start/end and mark timingNeedsReview, rather than nulling it. User prefers editable imperfect values. Actual missing/invalid native alignment can still be unavailable. Never promise perfect synchronization or fabricate ASR times.
-
-Review supports wide video/list layout, edits, per-word timing, split/merge, insertion/deletion, undo/redo, retry choices, style controls and pacing Auto/1–5 words. Portrait Auto favors ~2 words, landscape broader phrases. Export Captions saves edited SRT/VTT; visual styling remains in the project.
+Only native Tara (Q8_0/Q5_0) and Shruti are supported. The Rust library in native/speech serves Tauri, CLI and MCP/HTTP. No Python, CT2 or separate agent timeline. See docs/native-captions.md.
 
 ## Current caption styling
 
@@ -45,21 +35,8 @@ Dynamic presets now default to progressive reveal. Existing saved captions retai
 
 Review styles apply to its full caption set. Inspector style changes now apply to ALL selected captions. Apply to all captions copies style/custom behavior to all current unlocked captions in one undo step. Preserve each caption's text/timing/emphasis choice. Rendering uses the same CaptionWords component for review and timeline; settings serialize with the project.
 
-## Lab and retained/retired experiments
+## Native Speech Lab and validation
 
-Keep Audio/Speech Lab code for future reuse. Development entry: Ctrl+Shift+L or #/speech-lab. Select up to 3 cards and run sequentially. Retained choices: Shruti, Shunya INT8, Whistle English, Tara Parallel. Whistle English/language-span reconciliation remains experimental, not production auto-merge. No tuned Shruti weights were promoted.
+Ctrl+Shift+L opens the native-only lab. Select Shruti and/or Tara Q8/Q5, prepare the same immutable source, and compare results and exports. Legacy model cards, VAD/chunking/keyword controls, Python environments and old experiments were removed. GPU packs are not published yet.
 
-Older Shruti variants, Srota, Whisper-tiny, Shunya FP32, Tara Original/Standard/single-worker cards were retired. Historical files/IDs/docs may remain. Original Tara source assets may still be needed for conversion verification. Hidden model != proof all files were physically deleted. Avoid duplicate runtimes and do not delete shared artifacts as residue.
-
-## Entry points and validation
-
-- `src/components/captions/AutoCaptionsDialog.tsx`, `TranscriptReview.tsx`, `CaptionCustomization.tsx`, `CaptionStylePicker.tsx`, `CaptionWords.tsx`.
-- `src/core/captions/{types,captionStyles,reviewEditing,transcriptReview,projectAudioPlan}.ts`.
-- `src/core/commands/{editorCommand,captionStyleCommands,importAutoCaptionsCommand}.ts`.
-- `src/services/autoCaptions.ts`; `src-tauri/src/speech_lab.rs`.
-- `speech-lab/backend/{auto_captions,worker,project_audio,tara_int8,tara_chunking,tara_alignment,shruti_transcription}.py`.
-- Model/runtime cache: `%LOCALAPPDATA%\com.aiditor.app\speech-lab`.
-
-Latest full frontend suite: 675 passed; latest affected-area check: 75 passed; build passed. Latest backend production integration check: 114 passed (before later frontend-only style work). Rust allowlist check passed. Existing bundle-size warning remains. Workspace currently has no .git directory. Use npm.cmd on Windows.
-
-Do not automatically transcribe/benchmark/train on user recordings; they have been manually testing. Prefer mocks and replayed saved output unless real inference is requested. Distinguish accuracy, timing coverage and actual sync. Respect current user direction, make changes directly, avoid unrelated refactors and unnecessary approval questions.
+Run npm.cmd test, npm.cmd run build and native Cargo tests/builds. Current model/cache root: %LOCALAPPDATA%\com.aiditor.app\speech-lab. Use scripts/cleanup-legacy-speech.ps1 to remove prior installations while preserving native models and recordings.

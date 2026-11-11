@@ -1,0 +1,51 @@
+[package]
+name = "aiditor-speech"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[[bin]]
+name = "aiditor"
+path = "src/main.rs"
+
+[features]
+default = []
+cuda = ["whisper-rs/cuda"]
+vulkan = ["whisper-rs/vulkan"]
+metal = ["whisper-rs/metal"]
+
+[dependencies]
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+hex = "0.4"
+uuid = { version = "1", features = ["v4"] }
+libloading = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls", "json"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+whisper-rs = { version = "=0.16.0", features = ["raw-api"] }
+half = "2"
+memmap2 = "0.9"
+safetensors = "0.6"
+tiny_http = "0.12"
+ash = { version = "0.38", default-features = false, features = ["loaded", "std"] }
+num_cpus = "1.17"
+sysinfo = { version = "0.37", default-features = false, features = ["system"] }
+rustfft = "6.4"
+fs2 = "0.4"
+
+[patch.crates-io]
+whisper-rs-sys = { path = "../whisper-rs-sys" }
+
+[profile.dev.package.aiditor-speech]
+opt-level = 2
+
+[profile.dev.package.sha2]
+opt-level = 3
+
+[profile.dev.package.rustfft]
+opt-level = 3

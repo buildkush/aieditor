@@ -1,0 +1,6 @@
+[env]
+# Use the bindings shipped with the pinned crate: no libclang/Python required.
+WHISPER_DONT_GENERATE_BINDINGS = "1"
+# Do not tune a distributable binary to the build machine's CPU.
+GGML_NATIVE = "OFF"
+GGML_AVX512 = "OFF"

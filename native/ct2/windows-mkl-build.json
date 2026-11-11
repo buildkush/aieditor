@@ -1,0 +1,25 @@
+{
+  "note": "Build-machine inputs only. These archives contain native headers, libraries and DLLs. No Python interpreter or pip is used.",
+  "packages": [
+    {
+      "name": "mkl_devel-2025.0.1.whl",
+      "url": "https://files.pythonhosted.org/packages/1f/b1/03a2388889052dd018cebf8b915599015161519c6af89e42e4a31a62e2f0/mkl_devel-2025.0.1-py2.py3-none-win_amd64.whl",
+      "sha256": "fc62df9c689722dadf282af6380538063dbd4fd3d328aa3c60eb72a521d06789"
+    },
+    {
+      "name": "mkl_include-2025.0.1.whl",
+      "url": "https://files.pythonhosted.org/packages/cd/b7/092df7c41f57b3a41bb60392081564da0ea64ae300128fa9d44dd7acd84b/mkl_include-2025.0.1-py2.py3-none-win_amd64.whl",
+      "sha256": "1149c1b34bc41166c0bb09c103e42ae251f0a9d190b886a99124b70632b3bc8d"
+    },
+    {
+      "name": "mkl-2025.0.1.whl",
+      "url": "https://files.pythonhosted.org/packages/82/af/17d96670517ce773521ddd10c6f7752b4a2ffe34609dc367d5bd79425948/mkl-2025.0.1-py2.py3-none-win_amd64.whl",
+      "sha256": "5b7ee0dd14038ea1e1b0eb484f3a883b50aa0130da5d31e8734b960218eb4255"
+    },
+    {
+      "name": "intel_openmp-2025.0.3.whl",
+      "url": "https://files.pythonhosted.org/packages/e1/a6/48c28142e9d97cf473c1a3a86615ab569b927ea3b1ff4a07ffff8cf89f8a/intel_openmp-2025.0.3-py2.py3-none-win_amd64.whl",
+      "sha256": "57272061223ea824686d2b262091d4fa8aa59263a0b11de7ecbeb1f1cba7823a"
+    }
+  ]
+}

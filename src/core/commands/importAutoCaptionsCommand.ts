@@ -7,6 +7,9 @@ import { projectAudioPlan } from '../captions/projectAudioPlan'
 import { importSubtitles } from './projectCommands'
 import { captionReviewProperties } from '../captions/reviewEditing'
 
+// Both names refer to the same validated, undoable project command.
+export { ImportAutoCaptionsCommand as ApplyCaptionTrackCommand }
+
 /** One undoable command for human/UI or agent clients; ASR never edits the timeline. */
 export class ImportAutoCaptionsCommand implements EditorCommand<'IMPORT_AUTO_CAPTIONS', { transcript: CaptionTranscript }> {
   readonly type = 'IMPORT_AUTO_CAPTIONS' as const

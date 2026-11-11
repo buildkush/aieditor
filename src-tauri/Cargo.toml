@@ -24,4 +24,14 @@ log = "0.4"
 tauri = { version = "2.12.4", features = ["protocol-asset"] }
 tauri-plugin-log = "2"
 rfd = "0.15"
+aiditor-speech = { path = "../native/speech" }
+
+[patch.crates-io]
+whisper-rs-sys = { path = "../native/whisper-rs-sys" }
+
+[profile.dev.package.aiditor-speech]
+opt-level = 2
+
+[profile.dev.package.sha2]
+opt-level = 3
 

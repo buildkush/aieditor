@@ -6,13 +6,13 @@ interface WorkerEvent { jobId: string; type: 'progress' | 'result' | 'error' | '
 let queue: Promise<unknown> = Promise.resolve()
 const cancelled = () => new DOMException('Operation cancelled', 'AbortError')
 
-/** One shared serialized process protocol; caption RPCs expose only Shruti/project audio. */
+/** Shared serialized native job protocol for Tara/Shruti and project audio. */
 export function runWorker<T>(request: Record<string, unknown>, onProgress?: (progress: Progress) => void, signal?: AbortSignal, channel: 'lab' | 'captions' = 'lab'): Promise<T> {
   const startCommand = channel === 'lab' ? 'speech_lab_start' : 'auto_captions_start'
   const cancelCommand = channel === 'lab' ? 'speech_lab_cancel' : 'auto_captions_cancel'
   const operation = queue.catch(() => {}).then(async () => {
     if (signal?.aborted) throw cancelled()
-    if (!isTauri()) throw new Error(channel === 'lab' ? 'Speech Lab needs the desktop development build. Run npm run tauri dev, then Ctrl+Shift+L.' : 'Auto captions require the desktop app and local Shruti runtime.')
+    if (!isTauri()) throw new Error(channel === 'lab' ? 'Speech Lab needs the desktop development build. Run npm run tauri dev, then Ctrl+Shift+L.' : 'Auto captions require the desktop app and native caption runtime.')
     const jobId = crypto.randomUUID()
     let finish: (() => void) | undefined
     return new Promise<T>((resolve, reject) => {

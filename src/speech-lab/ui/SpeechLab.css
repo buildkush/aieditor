@@ -84,3 +84,6 @@
 .sl-model .sl-model-choice { display: flex; align-items: center; gap: 7px; cursor: inherit; margin-bottom: 8px; }
 .sl-model .sl-model-choice input { margin: 0; }
 .sl-model:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.speech-lab .sl-content { min-height: 0; overflow: auto; padding-right: 10px; }
+.speech-lab .sl-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.speech-lab .sl-result { padding: 16px; border: 1px solid var(--border); border-radius: 6px; }

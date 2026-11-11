@@ -5,6 +5,7 @@ param(
     [switch]$AppOnly,
     [switch]$Check,
     [switch]$SkipSystemInstall,
+    [string]$SpeechBundle,
     [switch]$Launch
 )
 
@@ -35,35 +36,6 @@ function Test-SetupVersion {
         return $LASTEXITCODE -eq 0 -and $reported -match '(\d+\.\d+\.\d+)' -and
             [version]$Matches[1] -ge [version]$Minimum
     } catch { return $false }
-}
-
-function Get-SetupPython {
-    # Resolve a real interpreter, bypassing Windows' Store alias and stale PATHs.
-    # Existing speech/native dependencies are tested on Python 3.12/3.13, x64.
-    $probes = @(
-        @{ Exe = 'py.exe'; Args = @('-3.13') },
-        @{ Exe = 'py.exe'; Args = @('-3.12') },
-        @{ Exe = 'python.exe'; Args = @() }
-    )
-    foreach ($probe in $probes) {
-        if (-not (Get-Command $probe.Exe -ErrorAction SilentlyContinue)) { continue }
-        try {
-            $probeArgs = @($probe.Args) + @('-c', "import struct,sys; assert (3,12) <= sys.version_info[:2] < (3,14) and struct.calcsize('P')==8; print(sys.executable)")
-            $resolved = (& $probe.Exe @probeArgs 2>$null | Out-String).Trim()
-            if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $resolved -PathType Leaf)) { return $resolved }
-        } catch { }
-    }
-    # An installation from this setup may not have updated a Python launcher yet.
-    foreach ($base in @([Environment]::GetFolderPath('LocalApplicationData'), $env:ProgramFiles)) {
-        if (-not $base) { continue }
-        foreach ($relative in @('Programs\Python\Python313\python.exe', 'Python313\python.exe')) {
-            $candidate = Join-Path $base $relative
-            if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { continue }
-            & $candidate -c "import struct,sys; assert (3,12) <= sys.version_info[:2] < (3,14) and struct.calcsize('P')==8" 2>$null | Out-Null
-            if ($LASTEXITCODE -eq 0) { return $candidate }
-        }
-    }
-    return $null
 }
 
 function Get-SetupVsInstallation {
@@ -152,16 +124,21 @@ function Get-SetupRequirements {
         @{ Name = 'C++ Build Tools and Windows SDK'; Id = 'Microsoft.VisualStudio.2022.BuildTools'; Test = { Test-SetupCpp }; Extra = @('--override', '--wait --passive --norestart --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended') },
         @{ Name = 'WebView2 Runtime'; Id = 'Microsoft.EdgeWebView2Runtime'; Test = { Test-SetupWebView }; Extra = @() }
     )
-    if ($IncludeSpeech) {
-        $requirements += @{ Name = 'Python 3.12/3.13 x64'; Id = 'Python.Python.3.13'; Test = { [bool](Get-SetupPython) }; Extra = @('--architecture', 'x64') }
-    }
+    $requirements += @{ Name = 'CMake'; Id = 'Kitware.CMake'; Test = { Test-SetupVersion 'cmake.exe' '3.20.0' }; Extra = @() }
+    $requirements += @{ Name = 'FFmpeg'; Id = 'Gyan.FFmpeg'; Test = { [bool](Get-Command ffmpeg.exe -ErrorAction SilentlyContinue) }; Extra = @() }
     return $requirements
 }
 
-function Install-SetupSpeechDependencies {
-    param([string]$PythonExecutable)
-    & (Join-Path $PSScriptRoot 'setup-speech-lab.ps1') -PythonExecutable $PythonExecutable
-    if ($LASTEXITCODE -ne 0) { throw 'Speech dependency setup failed.' }
+function Get-NativeModelStatus {
+    param([string]$Executable, [string]$Model)
+    $status = & $Executable models status $Model | ConvertFrom-Json
+    if ($LASTEXITCODE -ne 0) { throw "Native $Model status check failed." }
+    return $status
+}
+function Import-SetupSpeechBundle {
+    param([string]$Source)
+    Import-Module (Join-Path $PSScriptRoot 'speech-transfer.psm1') -Force
+    Import-NativeSpeechTransfer -Source $Source | Format-List | Out-Host
 }
 
 function Invoke-AiditorSetup {
@@ -171,6 +148,9 @@ function Invoke-AiditorSetup {
     }
     if (-not [Environment]::Is64BitProcess) { throw 'Run setup.cmd from a 64-bit terminal.' }
     if ($Launch -and $Check) { throw '-Check cannot be combined with -Launch.' }
+    if($SpeechBundle -and ($Check -or $AppOnly -or $Models -notin @('Both','Tara'))){
+        throw '-SpeechBundle requires normal setup with -Models Both or Tara; it cannot be combined with -Check or -AppOnly.'
+    }
     $includeSpeech = -not $AppOnly
     $selectedModels = if ($AppOnly) { 'none' } else { $Models.ToLowerInvariant() }
     Write-Host "aiditor Windows setup | speech=$includeSpeech | models=$selectedModels"
@@ -200,19 +180,24 @@ function Invoke-AiditorSetup {
     if ($missing.Count) {
         throw ('Missing prerequisites: ' + ($missing -join ', ') + '. For an existing Visual Studio installation, add Desktop development with C++ and a Windows SDK in Visual Studio Installer. Restart your terminal after installs, then rerun setup.cmd.')
     }
-    $basePython = if ($includeSpeech) { Get-SetupPython } else { $null }
-    $speechPython = Join-Path $script:SetupRoot '.speech-lab-venv\Scripts\python.exe'
-    $modelSetup = Join-Path $PSScriptRoot 'setup_models.py'
-    $modelArgs = @('-B', $modelSetup, '--models', $selectedModels)
+    $nativeCli = Join-Path $script:SetupRoot 'native\speech\target\release\aiditor.exe'
+    if ($Check -and -not (Test-Path -LiteralPath $nativeCli)) {
+        $developmentCli=Join-Path $script:SetupRoot 'native\speech\target\debug\aiditor.exe'
+        if(Test-Path -LiteralPath $developmentCli){$nativeCli=$developmentCli}
+    }
+    $nativeManifest = Join-Path $script:SetupRoot 'native\speech\Cargo.toml'
+    $requestedModels = switch ($selectedModels) { 'both' { @('tara','shruti') } 'none' { @() } default { @($selectedModels) } }
     if ($Check) {
         if (-not (Test-Path -LiteralPath (Join-Path $script:SetupRoot 'node_modules\@tauri-apps\cli'))) {
             throw 'App dependencies are missing. Run setup.cmd.'
         }
         Invoke-SetupNative 'npm.cmd' @('ls', '--depth=0')
         if ($includeSpeech) {
-            if (-not (Test-Path -LiteralPath $speechPython)) { throw 'Speech environment is missing. Run setup.cmd.' }
-            Invoke-SetupNative $speechPython @('-m', 'pip', 'check')
-            Invoke-SetupNative $speechPython ($modelArgs + @('--check'))
+            if (-not (Test-Path -LiteralPath $nativeCli)) { throw 'Native caption CLI is missing. Run setup.cmd.' }
+            foreach ($selected in $requestedModels) {
+                $status = Get-NativeModelStatus $nativeCli $selected
+                if (-not $status.installed) { throw "Native $selected is not ready. Run setup.cmd." }
+            }
         }
         Write-Host 'Readiness checks passed; no packages or models were installed.'
         return
@@ -220,8 +205,10 @@ function Invoke-AiditorSetup {
     Invoke-SetupNative 'npm.cmd' @('ci')
     Invoke-SetupNative 'cargo.exe' @('fetch', '--locked', '--manifest-path', (Join-Path $script:SetupRoot 'src-tauri\Cargo.toml'))
     if ($includeSpeech) {
-        Install-SetupSpeechDependencies $basePython
-        Invoke-SetupNative $speechPython $modelArgs
+        Invoke-SetupNative 'cargo.exe' @('build', '--release', '--locked', '--manifest-path', $nativeManifest, '--bin', 'aiditor')
+        if($SpeechBundle){Import-SetupSpeechBundle $SpeechBundle}
+        Invoke-SetupNative $nativeCli @('runtime', 'auto')
+        foreach ($selected in $requestedModels) { Invoke-SetupNative $nativeCli @('models', 'install', $selected) }
     }
     Write-Host ''
     Write-Host 'Setup complete. Run .\run-desktop.bat to launch aiditor.'

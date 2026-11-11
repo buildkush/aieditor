@@ -68,15 +68,6 @@
   },
   "bundle": {
     "active": true,
-    "resources": {
-      "../speech-lab/backend/*.py": "speech-backend/",
-      "../speech-lab/backend/shruti-assets.json": "speech-backend/shruti-assets.json",
-      "../speech-lab/backend/whistle-assets.json": "speech-backend/whistle-assets.json",
-      "../speech-lab/backend/tara-assets.json": "speech-backend/tara-assets.json",
-      "../speech-lab/backend/tested-cpu-assets.json": "speech-backend/tested-cpu-assets.json",
-      "../scripts/setup-speech-lab.ps1": "speech-setup/scripts/setup-speech-lab.ps1",
-      "../speech-lab/requirements-lock.txt": "speech-setup/speech-lab/requirements-lock.txt"
-    },
     "targets": "all",
     "icon": [
       "icons/32x32.png",

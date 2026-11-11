@@ -1,73 +1,13 @@
 # Development on another Windows PC
 
-Run a separate development checkout on each computer. Git synchronizes source;
-dependencies, model weights, footage and generated caches stay on each machine.
-The desktop app and its native workers execute on the PC where they are launched.
-Opening a frontend served by another PC does not move browser computation or
-Tauri workers to that PC.
+Each PC runs its own checkout. Git synchronizes source; dependencies, model
+weights, media and generated caches remain local. A browser opened on another
+PC does not move computation to that PC.
 
-## One-command setup
+## First clone and setup
 
-From a cloned checkout on Windows x64, run:
-
-```powershell
-.\setup.cmd
-```
-
-The command checks Git, Node.js/npm, C++ tools/Windows SDK, WebView2, Python and
-Rust. Missing system prerequisites are installed through WinGet; Windows may
-request administrator approval. WinGet itself comes from Microsoft's **App
-Installer**. If it is missing, install/update App Installer from the Microsoft
-Store and rerun setup. If Windows requests a restart, restart and rerun setup.
-
-Setup then installs npm dependencies from `package-lock.json`, fetches the locked
-Cargo dependencies, prepares the pinned Python environment and installs both
-current caption modes: Tara and Shruti. It handles Tara's isolated CPU runtime,
-custom native build and INT8 conversion in order. Existing verified weights and
-native runtimes are reused; no recording is transcribed or benchmarked.
-
-The first setup needs internet and several GB of free space for model weights,
-Python/native dependencies and intermediate build files. Close aiditor before
-running installation/repair. Failures stop setup and show the step to repair;
-rerunning reuses completed installations. Setup does not install NVIDIA drivers,
-CUDA, segmentation/tracking models or a remote GPU worker. Existing caption
-profiles remain CPU configurations.
-
-| Command | Scope |
-| --- | --- |
-| `.\setup.cmd` | App, speech dependencies, Tara and Shruti |
-| `.\setup.cmd -Models Tara` | App, speech dependencies and Tara only |
-| `.\setup.cmd -Models Shruti` | App, speech dependencies and Quick mode only |
-| `.\setup.cmd -Models None` | App and speech dependencies, no model weights |
-| `.\setup.cmd -AppOnly` | Desktop app dependencies, no Python/speech setup |
-| `.\setup.cmd -Check` | Check prerequisites, dependencies and selected models without installing |
-| `.\setup.cmd -SkipSystemInstall` | Install project dependencies/models only; fail if a system prerequisite is missing |
-| `.\setup.cmd -Launch` | Complete setup and launch the desktop development app |
-
-After Node.js is available, `npm.cmd run setup -- -Check` invokes the same script.
-The batch launcher works before Node.js is installed and from paths with spaces.
-It bypasses PowerShell execution policy for that invocation only; it does not
-change machine-wide policy. Check mode does not create model manifests/downloads
-or install missing packages. It returns a failing exit code for incomplete setup.
-
-## Prerequisites (manual alternative)
-
-- Git for Windows.
-- Node.js 22.18 or newer with npm. This checkout has been developed with Node 22.18.
-- Rust 1.90 or newer, using the Windows MSVC toolchain.
-- Visual Studio Build Tools with **Desktop development with C++**, including a
-  Windows SDK.
-- Microsoft Edge WebView2 Runtime.
-- For local speech processing: Python 3.12 or 3.13 x64 (Python 3.13 tested).
-
-Follow the [Tauri Windows prerequisites](https://v2.tauri.app/start/prerequisites/#windows)
-for native build tools. A normal frontend-only session does not require Rust,
-C++ tools or Python; the desktop build and local speech workers do.
-
-## First clone and launch
-
-After the repository has been pushed, run these commands in PowerShell on the
-destination PC. Replace `YOUR_REPOSITORY_URL` with your repository's clone URL.
+On Windows x64, install Git and clone the pushed repository. Windows App Installer
+provides WinGet, which setup uses for missing system prerequisites.
 
 ```powershell
 git clone YOUR_REPOSITORY_URL aiditor
@@ -76,110 +16,91 @@ Set-Location aiditor
 .\run-desktop.bat
 ```
 
-The first native build downloads Cargo dependencies and compiles the desktop app.
-For later launches, `run-desktop.bat` runs the same desktop development command.
+Setup checks/installs Node.js 22.18+, Rust 1.90+ MSVC, C++ Build Tools/Windows SDK,
+WebView2, CMake and FFmpeg. It installs npm dependencies from the lockfile,
+fetches locked Rust dependencies, builds the native caption CLI and prepares
+Tara GGML plus native Shruti. It does not run Python, pip, or create a virtual
+environment. Windows may request administrator approval. If an installer requires
+a restart, restart and rerun setup. If WinGet is missing, install/update Microsoft
+App Installer from the Microsoft Store first.
 
-For a browser-only UI session, use `npm.cmd run dev` and open the URL it prints.
-Current local speech processing requires the desktop app; serving Vite on a LAN
-does not expose a remote model-processing service.
+The first setup needs internet, build time and several GB of free disk space.
+Tara currently converts a pinned source checkpoint locally with Rust; it is not
+yet a small preconverted download. Existing verified weights are reused. Close
+aiditor before installation/repair. No recording is processed during setup.
 
-## Manual speech setup
+| Command | Scope |
+| --- | --- |
+| `.\setup.cmd` | Native app/CLI dependencies, Tara and Shruti |
+| `.\setup.cmd -Models Tara` | Tara only |
+| `.\setup.cmd -Models Shruti` | Shruti Quick mode only |
+| `.\setup.cmd -Models None` | Native app/CLI, no model weights |
+| `.\setup.cmd -AppOnly` | Desktop dependencies, no CLI/model preparation |
+| `.\setup.cmd -Check` | Read-only prerequisite/dependency/model checks |
+| `.\setup.cmd -SkipSystemInstall` | Fail if a system prerequisite is missing |
+| `.\setup.cmd -Launch` | Set up and launch the desktop development app |
 
-The main setup command already performs this step. For an existing manual setup,
-the following installs only pinned base Python dependencies, not model weights:
+After Node.js is installed, `npm.cmd run setup -- -Check` invokes the same script.
+The launcher applies PowerShell execution-policy bypass only to its process.
 
-```powershell
-powershell -File .\scripts\setup-speech-lab.ps1
-```
+See [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/#windows) for
+manual system-tool installation. For a frontend-only UI session use
+`npm.cmd run dev`; local inference uses the desktop app or native CLI.
 
-The script creates `.speech-lab-venv` in this checkout. If Windows blocks an
-internet-downloaded script, review it and unblock that file rather than changing
-the machine-wide execution policy. Installation failures should be fixed on the
-destination PC; do not copy a virtual environment from another computer.
+## Native caption models and GPU status
 
-To complete model setup from the command line, use `.\setup.cmd -Models Tara`,
-`-Models Shruti` or `-Models Both`. The app also retains its model-installation
-controls. Tara's production CPU path needs its separately managed runtime and
-custom native build; the base Python script alone is not the complete Tara
-installation. The main setup command runs the additional steps automatically. See
-[Tara setup and runtime notes](speech-lab-tara.md) and
-[the native build script](../scripts/build_tara_int8.py). That script clones the
-pinned CTranslate2 source into the ignored `speech-lab/research/` directory when
-it is missing and applies the versioned patches itself.
+The model/cache root is `%LOCALAPPDATA%\com.aiditor.app\speech-lab`.
+The native CLI is `native\speech\target\release\aiditor.exe` after setup. Models,
+recordings and cache output are not committed. Source media is immutable.
 
-Speech Lab is available only in development builds (Ctrl+Shift+L). Downloaded
-models and runtime caches normally live under
-`%LOCALAPPDATA%\com.aiditor.app\speech-lab`; they are separate from the repository.
-Do not copy those runtime environments between PCs. Transfer immutable model
-assets separately only when the relevant installer supports verifying/reusing
-them.
+Read [Native caption engine](native-captions.md) for conversion, CLI/MCP usage,
+model-format differences and validation limitations. The current acceleration
+pack catalog is empty: setup detects hardware but reports CPU fallback until a
+tested compatible pack is published and pinned. It does not install GPU drivers
+or GPU SDKs. Do not infer acceleration merely from an NVIDIA GPU being present.
+
+Only native Tara and Shruti are supported. To remove a previous Python installation and retired model weights, close aiditor and run `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/cleanup-legacy-speech.ps1`. This preserves native GGML/Needle models and source recordings.
 
 ## Updating the second PC
 
-Commit and push reviewed changes from the development machine. On the second PC,
-stop the app and run:
+For the current fast CT2 CPU build, use [the existing-installation update guide](update-existing-installation.md).
+It covers the one-time verified native asset transfer and reuse of older caches.
+An old GGML model or Python environment does not provide this CT2 runtime.
+
+Commit and push reviewed work from the development PC. On the other PC, stop the
+app and run:
 
 ```powershell
 git status
 git pull --ff-only
-.\setup.cmd
+.\setup.cmd -SpeechBundle "D:\aiditor-native-speech"
 .\run-desktop.bat
 ```
 
-Resolve or commit local work before pulling; do not discard it automatically.
-Re-run Python setup when its dependency lockfile changes. New GPU experiments
-should use separate environments so they do not replace the existing speech
-dependencies. Merely having an NVIDIA GPU does not enable GPU execution in a
-CPU-configured model runtime.
+Commit or resolve local work before pulling; do not discard it automatically.
+After the initial transfer, future source-only updates can use plain `setup.cmd`;
+unchanged native model/runtime files are reused. Q5 is not a default download.
+A packaged release should not require users to install build tools. This is a
+source-development setup; packaged-size and clean-machine release testing remain
+separate work.
 
-## Repository contents
+## Repository contents and checks
 
-Commit source code, tests, documentation, application images/icons, configuration,
-`package-lock.json`, `src-tauri/Cargo.lock` and Python requirement files.
-
-The root `.gitignore` excludes dependencies, build output, virtual environments,
-downloaded research checkouts, weights, recordings, `.aiditor` projects, renders,
-archives, local credentials and temporary output. These rules do not delete files.
-Keep footage outside the checkout or in an ignored `media/` or `recordings/`
-directory. Existing projects may need their source files relinked on another PC.
-
-Small, intentional binary test fixtures that match an ignore rule can be added
-with a narrow exception after review. Do not force-add a model cache or a whole
-media directory. Ordinary source images and icons are not ignored.
-
-Review prospective Git content before the first commit:
+Commit source, tests, application images/icons, configuration, documentation,
+JavaScript/Cargo lockfiles and pinned native source/licenses. `.gitignore` keeps
+build output, downloaded weights, personal projects/media, temporary data,
+archives and credentials out of normal Git additions. It does not delete files
+or remove anything already committed. Transfer/relink source media separately.
 
 ```powershell
 git status --short
 git add --dry-run .
-git check-ignore -v .env node_modules/ .speech-lab-venv/ src-tauri/target/ speech-lab/research/
-```
-
-Check documentation and benchmark reports for information you do not want to
-publish. An ignore file prevents new matching files from being added normally;
-it does not remove files or secrets already committed to history.
-
-## Validation
-
-```powershell
 npm.cmd test
 npm.cmd run build
-```
-
-With the speech environment installed, backend unit tests use mocks and synthetic
-fixtures and can be run without transcribing personal recordings:
-
-```powershell
-.\.speech-lab-venv\Scripts\python.exe -B -m unittest discover -s speech-lab/tests -p "test_*.py"
-```
-
-Setup orchestration tests use mocks, without installing packages or models:
-
-```powershell
+cargo test --manifest-path native/speech/Cargo.toml --lib
+cargo build --manifest-path src-tauri/Cargo.toml
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-setup.ps1
-.\.speech-lab-venv\Scripts\python.exe -B -m unittest discover -s speech-lab/tests -p "test_setup_models.py"
 ```
 
-Real model inference, recording benchmarks and GPU compatibility checks are
-separate, explicitly selected experiments. Segmentation/tracking integration and
-a remote GPU worker are not implemented by this setup.
+No real recording is transcribed by these unit tests. GPU latency/quality tests
+require an explicitly selected fixture and the actual target hardware.

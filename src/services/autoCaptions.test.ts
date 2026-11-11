@@ -17,7 +17,7 @@ describe('Project caption job bridge', () => {
     finish('result',{installed:false});await status
     const install=autoCaptionsService.install(() => {},abort.signal,quickMode)
     await vi.waitFor(() => expect(starts()).toHaveLength(2))
-    expect(starts()[1][1].request).toEqual({action:'download',model:quickMode?'shruti':'tara-int8'})
+    expect(starts()[1][1].request).toEqual({action:'download',model:quickMode?'shruti':'tara'})
     finish('result',[]);await install
   })
   it('uses the caption allowlist and sends one project audio plan without an output language', async () => {

@@ -1,0 +1,6 @@
+{
+  "abi": "aiditor-whisper-rs-0.16-tara-v1",
+  "packs": {},
+  "platforms": {},
+  "note": "Populate platforms[os-architecture][backend] only with tested, pinned release manifests. Backend may be cuda, vulkan, metal or ct2-cpu. Local release builders can import packs without publishing them. No compatible downloadable pack is published yet."
+}

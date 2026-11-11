@@ -1,0 +1,35 @@
+name: Native speech portability
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ['native/**', '.cargo/**', 'scripts/build-native-*.ps1', 'scripts/*caption*.ps1', 'scripts/*speech*', 'scripts/*setup*', '.github/workflows/native-speech.yml']
+jobs:
+  rust:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.90.0
+      - name: Check benchmark backend qualification
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\scripts\test-caption-benchmark.ps1
+      - name: Check native transfer and setup helpers
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          .\scripts\test-speech-transfer.ps1
+          .\scripts\test-setup.ps1
+      - run: cargo test --locked --manifest-path native/speech/Cargo.toml --lib
+      - run: cargo build --release --locked --manifest-path native/speech/Cargo.toml --bin aiditor
+      - run: cargo fmt --check --manifest-path native/speech/Cargo.toml
+  ct2-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S native/ct2 -B build-ct2 -DAIDITOR_CT2_BACKEND=ruy -DOPENMP_RUNTIME=NONE
+      - run: cmake --build build-ct2 --target aiditor_ct2 aiditor_ct2_probe --parallel 4
+      - run: ctest --test-dir build-ct2 --output-on-failure

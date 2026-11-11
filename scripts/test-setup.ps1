@@ -17,7 +17,7 @@ function Get-SetupRequirements {
     return @(@{ Name = 'Mock tool'; Id = 'Mock.Package'; Test = { $script:FakeToolReady }; Extra = @() })
 }
 function Test-SetupRust { return $script:FakeRustReady }
-function Get-SetupPython { return 'C:\mock python\python.exe' }
+function Get-NativeModelStatus { param([string]$Executable,[string]$Model) return [pscustomobject]@{installed=$true} }
 function Test-Path { param([string]$LiteralPath) return $true }
 function Install-SetupPackage {
     param([string]$Id, [string[]]$ExtraArguments)
@@ -29,18 +29,14 @@ function Invoke-SetupNative {
     $script:SetupCalls.Add(@{ Kind = 'native'; Exe = $Executable; Args = $Arguments })
     if ($script:FailNpm -and $Executable -eq 'npm.cmd') { throw 'Simulated npm failure' }
 }
-function Install-SetupSpeechDependencies {
-    param([string]$PythonExecutable)
-    $script:SetupCalls.Add(@{ Kind = 'speech'; Exe = $PythonExecutable; Args = @() })
+function Import-SetupSpeechBundle {
+    param([string]$Source)
+    $script:SetupCalls.Add(@{Kind='speech-import';Source=$Source})
 }
-
 $Models = 'Both'; $AppOnly = $false; $Check = $true; $Launch = $false
 Invoke-AiditorSetup
-Assert-SetupTest ($script:SetupCalls.Count -eq 3) 'Check must only run npm/pip/model readiness commands.'
+Assert-SetupTest ($script:SetupCalls.Count -eq 1) 'Check must only inspect app dependencies and model status.'
 Assert-SetupTest ($script:SetupCalls[0].Args -join ' ' -eq 'ls --depth=0') 'Check must validate the installed app dependencies.'
-Assert-SetupTest ($script:SetupCalls[1].Args -join ' ' -eq '-m pip check') 'Check must validate the speech environment.'
-Assert-SetupTest ($script:SetupCalls[2].Args -contains '--check') 'Check must never run model installation.'
-Assert-SetupTest ($script:SetupCalls[2].Args -contains 'both') 'Check must inspect selected models.'
 
 $script:SetupCalls.Clear(); $Check = $false; $AppOnly = $true
 Invoke-AiditorSetup
@@ -50,9 +46,8 @@ Assert-SetupTest ($script:SetupCalls[1].Args -contains '--locked') 'Cargo depend
 
 $script:SetupCalls.Clear(); $AppOnly = $false; $Models = 'Shruti'
 Invoke-AiditorSetup
-Assert-SetupTest ($script:SetupCalls.Count -eq 4) 'Full setup must prepare app, speech dependencies and selected models.'
-Assert-SetupTest ($script:SetupCalls[2].Exe -eq 'C:\mock python\python.exe') 'Speech setup must receive the resolved interpreter, including spaces.'
-Assert-SetupTest ($script:SetupCalls[3].Args -contains 'shruti') 'Only the selected model should be requested.'
+Assert-SetupTest ($script:SetupCalls.Count -eq 5) 'Full setup must build native CLI, select acceleration, and install the selected model.'
+Assert-SetupTest ($script:SetupCalls[4].Args -contains 'shruti') 'Only the selected model should be requested.'
 Assert-SetupTest (-not ($script:SetupCalls[3].Args -contains '--check')) 'An installation must not accidentally run a read-only model check.'
 
 $script:SetupCalls.Clear(); $AppOnly = $true; $script:FakeToolReady = $false
@@ -88,4 +83,14 @@ try { Invoke-AiditorSetup } catch { $failedAsExpected = $_ -match 'cannot be com
 Assert-SetupTest $failedAsExpected 'A check must not launch the application.'
 Assert-SetupTest ($script:SetupCalls.Count -eq 0) 'Invalid check/launch flags must not start work.'
 
-Write-Host '9 mock-only setup scenarios passed.'
+$script:SetupCalls.Clear(); $Check=$false; $Launch=$false; $AppOnly=$false; $Models='Tara'; $script:FakeRustReady=$true; $SpeechBundle='D:\trusted-speech-transfer'
+Invoke-AiditorSetup
+Assert-SetupTest ($script:SetupCalls[3].Kind -eq 'speech-import') 'Speech transfer must be imported after the current CLI builds and before model installation.'
+Assert-SetupTest ($script:SetupCalls[5].Args -join ' ' -eq 'models install tara') 'Verified CT2 files must be present before normal model readiness/install handling.'
+$script:SetupCalls.Clear(); $Check=$true
+$failedAsExpected=$false
+try{Invoke-AiditorSetup}catch{$failedAsExpected=$_ -match 'SpeechBundle requires'}
+Assert-SetupTest $failedAsExpected 'Read-only setup checks must not import a transfer bundle.'
+Assert-SetupTest ($script:SetupCalls.Count -eq 0) 'Invalid speech transfer flags must fail before downloads or mutations.'
+
+Write-Host '11 mock-only setup scenarios passed.'
